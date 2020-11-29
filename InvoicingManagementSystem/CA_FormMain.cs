@@ -16,5 +16,12 @@ namespace InvoicingManagementSystem
         {
             InitializeComponent();
         }
+
+        private void checkout_Click(object sender, EventArgs e)
+        {
+            CA_checkOut checkout = new CA_checkOut();
+            checkout.MdiParent = this;//MdiParent用来规定父窗体
+            checkout.Show();
+        }
     }
 }

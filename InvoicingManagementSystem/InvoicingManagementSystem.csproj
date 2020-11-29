@@ -52,6 +52,12 @@
     <Compile Include="AD_FormMain.Designer.cs">
       <DependentUpon>AD_FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="CA_checkOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CA_checkOut.Designer.cs">
+      <DependentUpon>CA_checkOut.cs</DependentUpon>
+    </Compile>
     <Compile Include="CA_FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,6 +85,12 @@
     <Compile Include="WH_FormMain.Designer.cs">
       <DependentUpon>WH_FormMain.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CA_checkOut.resx">
+      <DependentUpon>CA_checkOut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CA_FormMain.resx">
+      <DependentUpon>CA_FormMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
