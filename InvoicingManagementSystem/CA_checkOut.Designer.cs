@@ -32,6 +32,12 @@
             this.btSearch = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView_GoodsList = new System.Windows.Forms.DataGridView();
+            this.ColChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.goods_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.goods_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.goods_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.goods_units = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.goods_retailPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.ColOrderCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,12 +49,7 @@
             this.btDelete = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxKeyword = new System.Windows.Forms.ComboBox();
-            this.ColChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.goods_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.goods_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.goods_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.goods_units = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.goods_retailPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btADD = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GoodsList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -68,6 +69,7 @@
             this.btSearch.TabIndex = 1;
             this.btSearch.Text = "搜索";
             this.btSearch.UseVisualStyleBackColor = true;
+            this.btSearch.Click += new System.EventHandler(this.btSearch_Click);
             // 
             // label1
             // 
@@ -93,6 +95,47 @@
             this.dataGridView_GoodsList.RowTemplate.Height = 23;
             this.dataGridView_GoodsList.Size = new System.Drawing.Size(650, 358);
             this.dataGridView_GoodsList.TabIndex = 4;
+            //this.dataGridView_GoodsList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_GoodsList_CellContentClick);
+            // 
+            // ColChecked
+            // 
+            this.ColChecked.HeaderText = "选择";
+            this.ColChecked.Name = "ColChecked";
+            // 
+            // goods_id
+            // 
+            this.goods_id.DataPropertyName = "goods_id";
+            this.goods_id.HeaderText = "商品编号";
+            this.goods_id.Name = "goods_id";
+            this.goods_id.ReadOnly = true;
+            // 
+            // goods_name
+            // 
+            this.goods_name.DataPropertyName = "goods_name";
+            this.goods_name.HeaderText = "商品名称";
+            this.goods_name.Name = "goods_name";
+            this.goods_name.ReadOnly = true;
+            // 
+            // goods_type
+            // 
+            this.goods_type.DataPropertyName = "goods_type";
+            this.goods_type.HeaderText = "商品种类";
+            this.goods_type.Name = "goods_type";
+            this.goods_type.ReadOnly = true;
+            // 
+            // goods_units
+            // 
+            this.goods_units.DataPropertyName = "goods_units";
+            this.goods_units.HeaderText = "商品单位";
+            this.goods_units.Name = "goods_units";
+            this.goods_units.ReadOnly = true;
+            // 
+            // goods_retailPrice
+            // 
+            this.goods_retailPrice.DataPropertyName = "goods_retailPrice";
+            this.goods_retailPrice.HeaderText = "零售价";
+            this.goods_retailPrice.Name = "goods_retailPrice";
+            this.goods_retailPrice.ReadOnly = true;
             // 
             // dataGridView2
             // 
@@ -182,51 +225,22 @@
             this.comboBoxKeyword.Size = new System.Drawing.Size(97, 20);
             this.comboBoxKeyword.TabIndex = 10;
             // 
-            // ColChecked
+            // btADD
             // 
-            this.ColChecked.HeaderText = "选择";
-            this.ColChecked.Name = "ColChecked";
-            // 
-            // goods_id
-            // 
-            this.goods_id.DataPropertyName = "goods_id";
-            this.goods_id.HeaderText = "商品编号";
-            this.goods_id.Name = "goods_id";
-            this.goods_id.ReadOnly = true;
-            // 
-            // goods_name
-            // 
-            this.goods_name.DataPropertyName = "goods_name";
-            this.goods_name.HeaderText = "商品名称";
-            this.goods_name.Name = "goods_name";
-            this.goods_name.ReadOnly = true;
-            // 
-            // goods_type
-            // 
-            this.goods_type.DataPropertyName = "goods_type";
-            this.goods_type.HeaderText = "商品种类";
-            this.goods_type.Name = "goods_type";
-            this.goods_type.ReadOnly = true;
-            // 
-            // goods_units
-            // 
-            this.goods_units.DataPropertyName = "goods_units";
-            this.goods_units.HeaderText = "商品单位";
-            this.goods_units.Name = "goods_units";
-            this.goods_units.ReadOnly = true;
-            // 
-            // goods_retailPrice
-            // 
-            this.goods_retailPrice.DataPropertyName = "goods_retailPrice";
-            this.goods_retailPrice.HeaderText = "零售价";
-            this.goods_retailPrice.Name = "goods_retailPrice";
-            this.goods_retailPrice.ReadOnly = true;
+            this.btADD.Location = new System.Drawing.Point(555, 18);
+            this.btADD.Name = "btADD";
+            this.btADD.Size = new System.Drawing.Size(75, 23);
+            this.btADD.TabIndex = 11;
+            this.btADD.Text = "添加";
+            this.btADD.UseVisualStyleBackColor = true;
+            this.btADD.Click += new System.EventHandler(this.btADD_Click);
             // 
             // CA_checkOut
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1292, 429);
+            this.Controls.Add(this.btADD);
             this.Controls.Add(this.comboBoxKeyword);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btDelete);
@@ -271,5 +285,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn goods_type;
         private System.Windows.Forms.DataGridViewTextBoxColumn goods_units;
         private System.Windows.Forms.DataGridViewTextBoxColumn goods_retailPrice;
+        private System.Windows.Forms.Button btADD;
     }
 }
