@@ -15,6 +15,7 @@ namespace InvoicingManagementSystem
 
         //传值
         //String goods_salespersonID="";
+        //public static String DGVgoods = CA_checkOut.dataGridView_GoodsList.Name.ToString();
 
 
         //委托
@@ -27,7 +28,7 @@ namespace InvoicingManagementSystem
         private void CA_checkOut_Load(object sender, EventArgs e)
         {
             InitSelect();//加载筛选列表
-            InitAllGoods();//加载所有商品
+            SqlDataRefresh();//加载所有商品
         }
 
         private void InitSelect()
@@ -47,8 +48,26 @@ namespace InvoicingManagementSystem
         private void InitAllGoods()
         {
             string sql = "select goods_id,goods_name,goods_type,goods_units," +
-                "goods_retailPrice from GoodsList where IsDeleted=0";
+                "goods_retailPrice from GoodsList where goods_inventory>0";
             DataTable dataTableGoodsList = SqlHelper.GetDataTable(sql);
+            dataGridView_GoodsList.DataSource = dataTableGoodsList;
+        }
+
+        /// <summary>
+        /// 两个列表的刷新
+        /// </summary>
+        public void SqlDataRefresh()
+        {
+            //刷新购物清单
+            string sql = "select goods_id,goods_name,goods_units," +
+                "goods_retailPrice from GoodsList where IsSelect=1";
+            DataTable dataTableBookList = SqlHelper.GetDataTable(sql);
+            dataGridView_SalesList.DataSource = dataTableBookList;
+
+            //刷新商品列表
+            string sql1 = "select goods_id,goods_name,goods_type,goods_units," +
+                "goods_retailPrice,goods_inventory from GoodsList where goods_inventory>0";
+            DataTable dataTableGoodsList = SqlHelper.GetDataTable(sql1);
             dataGridView_GoodsList.DataSource = dataTableGoodsList;
         }
 
@@ -59,7 +78,7 @@ namespace InvoicingManagementSystem
             string keyWord = textBox_search.Text.Trim();
 
             string sql = "select goods_id,goods_name,goods_type,goods_units," +
-                "goods_retailPrice from GoodsList where IsDeleted=0";
+                "goods_retailPrice,goods_inventory from GoodsList where goods_inventory>0";
             //sql += " where 1=1";
             if (SearchSID > 0)
             {
@@ -168,17 +187,8 @@ namespace InvoicingManagementSystem
                     }
 
 
-                    //刷新购物清单
-                    string sql = "select goods_id,goods_name,goods_units," +
-                        "goods_retailPrice from GoodsList where IsSelect=1";
-                    DataTable dataTableBookList = SqlHelper.GetDataTable(sql);
-                    dataGridView_SalesList.DataSource = dataTableBookList;
-
-                    //刷新商品列表
-                    string sql1 = "select goods_id,goods_name,goods_type,goods_units," +
-                        "goods_retailPrice from GoodsList where IsDeleted=0 and IsSelect=0";
-                    DataTable dataTableGoodsList = SqlHelper.GetDataTable(sql1);
-                    dataGridView_GoodsList.DataSource = dataTableGoodsList;
+                    //刷新
+                    SqlDataRefresh();
 
                 }
 
@@ -256,17 +266,8 @@ namespace InvoicingManagementSystem
                     }
 
 
-                    //刷新购物清单
-                    string sql = "select goods_id,goods_name,goods_units," +
-                        "goods_retailPrice from GoodsList where IsSelect=1";
-                    DataTable dataTableBookList = SqlHelper.GetDataTable(sql);
-                    dataGridView_SalesList.DataSource = dataTableBookList;
-
-                    //刷新商品列表
-                    string sql1 = "select goods_id,goods_name,goods_type,goods_units," +
-                        "goods_retailPrice from GoodsList where IsDeleted=0 and IsSelect=0";
-                    DataTable dataTableGoodsList = SqlHelper.GetDataTable(sql1);
-                    dataGridView_GoodsList.DataSource = dataTableGoodsList;
+                    //刷新
+                    SqlDataRefresh();
 
                 }
 
@@ -274,7 +275,7 @@ namespace InvoicingManagementSystem
         }
 
         /// <summary>
-        /// 点击提交按钮，将出售的商品信息写入售出商品表，从商品列表移除（IsDelete置1，IsSelect置0）
+        /// 点击提交按钮，将出售的商品信息写入售出商品表，商品列表更新库存（IsSelect置0）
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -314,18 +315,33 @@ namespace InvoicingManagementSystem
                             //LoginForm iden = new LoginForm();
                             String goods_name = "";
                             String goods_type = "";
+                            int goods_number = 1;//购买数量默认为1
                             String goods_units = "";
                             String goods_retailPrice = "";
+                            int goods_inventory = 0;
                             String goods_soldDate = "";
                             String goods_salespersonID = LoginForm.Employee_id;
+                            int flag = 0;//获取输入的购买数量用到的参数
                             foreach (String goods_id in listId)
                             {
                                 //获取数据
-                                string sqlGetDate = "select goods_id,goods_name,goods_type,goods_units,goods_retailPrice from GoodsList " +
+                                string sqlGetDate = "select goods_id,goods_name,goods_type,goods_units,goods_retailPrice,goods_inventory from GoodsList " +
                                     "where goods_id=@goods_id";
                                 SqlParameter paraID = new SqlParameter("@goods_id", goods_id);
                                 SqlDataReader dataReader = SqlHelper.ExecuteReader(sqlGetDate, paraID);
                                 //读取数据
+                                //DataRow dataRow = (dataGridView_SalesList.Rows[flag].DataBoundItem as DataRowView).Row;
+                                DataGridViewCell dataGridViewCell = dataGridView_SalesList.Rows[flag].Cells["goods_number"];
+                                if (flag < dataGridView_SalesList.Rows.Count)
+                                {
+                                    flag++;
+                                }
+                                int.TryParse(dataGridViewCell.EditedFormattedValue.ToString(), out goods_number);
+                                //if(!("".Equals(dataGridViewCell.Value.ToString()))&& dataGridViewCell.Value.ToString() != null)
+                                //{
+                                //goods_number = (int)dataGridViewCell.Value.ToString();
+                                //}
+
                                 if (dataReader.Read())//没有这一步会说DataReader没有启动
                                 {
                                     goods_name = dataReader["goods_name"].ToString();
@@ -333,27 +349,34 @@ namespace InvoicingManagementSystem
                                     goods_units = dataReader["goods_units"].ToString();
                                     goods_retailPrice = dataReader["goods_retailPrice"].ToString();
                                     goods_soldDate = DateTime.Now.ToString("yyyy.MM.dd");
-                                    
+                                    goods_inventory= (int)dataReader["goods_inventory"];
+                                    //int.TryParse(this.Tag.ToString(), out goods_inventory);
                                 }
                                 dataReader.Close();
 
-                                if ("".Equals(goods_id)|| "".Equals(goods_type) || "".Equals(goods_units)
-                                    || "".Equals(goods_retailPrice) || "".Equals(goods_soldDate)|| "".Equals(goods_salespersonID))
+                                if ("".Equals(goods_id) || "".Equals(goods_type) || "".Equals(goods_units)
+                                    || "".Equals(goods_retailPrice) || "".Equals(goods_soldDate) || "".Equals(goods_salespersonID))
                                 {
                                     MessageBox.Show("数据出现异常！", "购物提示",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                else if ((goods_inventory - goods_number) < 0)
+                                {
+                                    MessageBox.Show($"商品:{goods_name}库存不足！", "购物提示",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                                 else
                                 {
                                     //执行添加
                                     string sqlEdit = "insert into SalesList " +
-                                        "(goods_id,goods_name,goods_type,goods_units,goods_retailPrice,goods_soldDate,goods_salespersonID) " +
-                                        "values (@goods_id,@goods_name,@goods_type,@goods_units,@goods_retailPrice,@goods_soldDate,@goods_salespersonID)";
+                                        "(goods_id,goods_name,goods_type,goods_number,goods_units,goods_retailPrice,goods_soldDate,goods_salespersonID) " +
+                                        "values (@goods_id,@goods_name,@goods_type,@goods_number,@goods_units,@goods_retailPrice,@goods_soldDate,@goods_salespersonID)";
                                     SqlParameter[] parametersEdit =
                                     {
                                     new SqlParameter("@goods_id",goods_id),
                                     new SqlParameter("@goods_name",goods_name),
                                     new SqlParameter("@goods_type",goods_type),
+                                    new SqlParameter("@goods_number",goods_number),
                                     new SqlParameter("@goods_units",goods_units),
                                     new SqlParameter("@goods_retailPrice",goods_retailPrice),
                                     new SqlParameter("@goods_soldDate",goods_soldDate),
@@ -364,13 +387,15 @@ namespace InvoicingManagementSystem
                                     int count = SqlHelper.ExecuteNonQuery(sqlEdit, parametersEdit);
                                     if (count > 0)
                                     {
-                                        //在商品列表修改为不可见
-                                        command.CommandText = "update GoodsList set IsSelect=0 where goods_id=@goods_id " +
-                                            "update GoodsList set IsDeleted = 1 where goods_id =@goods_id ";
-                                        SqlParameter parameter = new SqlParameter("@goods_id", goods_id);
-                                        command.Parameters.Clear();
-                                        command.Parameters.Add(parameter);
-                                        count += command.ExecuteNonQuery();
+                                        goods_inventory = goods_inventory-goods_number;
+                                        //在商品列表更新库存数量
+                                        String sql = "update GoodsList set IsSelect=0 where goods_id=@goods_id " +
+                                            "update GoodsList set goods_inventory = @goods_inventory where goods_id =@goods_id";
+                                        SqlParameter[] parameter = {//这里是拿来参数化的，否则数据库不认识变量
+                                            new SqlParameter("@goods_id",goods_id),
+                                            new SqlParameter("@goods_inventory",goods_inventory)
+                                        };
+                                        SqlHelper.ExecuteNonQuery(sql, parameter);
 
                                     }
                                     else
@@ -398,17 +423,8 @@ namespace InvoicingManagementSystem
                     }
 
 
-                    //刷新购物清单
-                    string sql = "select goods_id,goods_name,goods_units," +
-                        "goods_retailPrice from GoodsList where IsSelect=1";
-                    DataTable dataTableBookList = SqlHelper.GetDataTable(sql);
-                    dataGridView_SalesList.DataSource = dataTableBookList;
-
-                    //刷新商品列表
-                    string sql1 = "select goods_id,goods_name,goods_type,goods_units," +
-                        "goods_retailPrice from GoodsList where IsDeleted=0 and IsSelect=0";
-                    DataTable dataTableGoodsList = SqlHelper.GetDataTable(sql1);
-                    dataGridView_GoodsList.DataSource = dataTableGoodsList;
+                    //刷新
+                    SqlDataRefresh();
                 }
             }
         }
