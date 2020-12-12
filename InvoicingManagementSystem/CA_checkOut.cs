@@ -13,8 +13,12 @@ namespace InvoicingManagementSystem
             InitializeComponent();
         }
 
+        //传值
+        //String goods_salespersonID="";
+
+
         //委托
-        private Action reLoad = null;
+        //private Action reLoad = null;
 
         //单例实现
         //private static AD_FormBooksList formBooksList = null;
@@ -23,7 +27,7 @@ namespace InvoicingManagementSystem
         private void CA_checkOut_Load(object sender, EventArgs e)
         {
             InitSelect();//加载筛选列表
-            InitAllGoods();//加载所有书
+            InitAllGoods();//加载所有商品
         }
 
         private void InitSelect()
@@ -88,9 +92,6 @@ namespace InvoicingManagementSystem
             {
                 new SqlParameter("@goods_id","%"+keyWord+"%"),
                 new SqlParameter("@goods_name","%"+keyWord+"%"),
-                new SqlParameter("@goods_type","%"+keyWord+"%"),
-                new SqlParameter("@goods_units","%"+keyWord+"%"),
-                new SqlParameter("@goods_retailPrice","%"+keyWord+"%"),
             };
             DataTable dataTableGoodsList = SqlHelper.GetDataTable(sql, parameters);
             dataGridView_GoodsList.DataSource = dataTableGoodsList;
@@ -132,7 +133,7 @@ namespace InvoicingManagementSystem
                 if (MessageBox.Show("您确定要将所选商品添加至购物清单吗？", "添加购物清单提示",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    //启动事务，删除
+                    //启动事务
                     using (SqlConnection connection = new SqlConnection(SqlHelper.connectionString))
                     {
                         connection.Open();
@@ -144,11 +145,7 @@ namespace InvoicingManagementSystem
                         {
                             foreach (String goods_id in listId)
                             {
-                                //将数据添加置购物清单
-                                
-
-                                //将添加后的数据置0
-                                command.CommandText = "update GoodsList set IsDeleted=1 where goods_id=@goods_id";
+                                command.CommandText = "update GoodsList set IsSelect=1 where goods_id=@goods_id";
                                 SqlParameter parameter = new SqlParameter("@goods_id", goods_id);
                                 command.Parameters.Clear();
                                 command.Parameters.Add(parameter);
@@ -159,25 +156,261 @@ namespace InvoicingManagementSystem
                         catch (SqlException ex)
                         {
                             transaction.Rollback();
-                            MessageBox.Show("加入购物清单出现异常！", "添加购物清单提示",
+                            MessageBox.Show("购物清单添加出现异常！", "添加购物清单提示",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }
                     }
                     if (count == listId.Count)
                     {
-                        MessageBox.Show("添加成功！", "添加购物清单提示",
+                        MessageBox.Show("购物清单添加成功！", "添加购物清单提示",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
-                    //刷新数据列表
+
+                    //刷新购物清单
+                    string sql = "select goods_id,goods_name,goods_units," +
+                        "goods_retailPrice from GoodsList where IsSelect=1";
+                    DataTable dataTableBookList = SqlHelper.GetDataTable(sql);
+                    dataGridView_SalesList.DataSource = dataTableBookList;
+
+                    //刷新商品列表
                     string sql1 = "select goods_id,goods_name,goods_type,goods_units," +
-                        "goods_retailPrice from GoodsList where IsDeleted=0";
-                    DataTable dataTableBookList = SqlHelper.GetDataTable(sql1);
-                    dataGridView_GoodsList.DataSource = dataTableBookList;
+                        "goods_retailPrice from GoodsList where IsDeleted=0 and IsSelect=0";
+                    DataTable dataTableGoodsList = SqlHelper.GetDataTable(sql1);
+                    dataGridView_GoodsList.DataSource = dataTableGoodsList;
+
+                }
+
+            }
+
+        }
+
+        /// <summary>
+        /// 从购物清单移除
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btDelete_Click(object sender, EventArgs e)
+        {
+            //选择
+            //获取所选数据
+            List<String> listId = new List<String>();
+            for (int i = 0; i < dataGridView_SalesList.Rows.Count; i++)
+            {
+                DataGridViewCheckBoxCell cell = dataGridView_SalesList.Rows[i].Cells["ColOrderCheck"]
+                    as DataGridViewCheckBoxCell;
+                bool check = Convert.ToBoolean(cell.Value);
+                if (check)
+                {
+                    DataRow dataRow = (dataGridView_SalesList.Rows[i].DataBoundItem as DataRowView).Row;
+                    String goods_id = dataRow["goods_id"].ToString();
+                    listId.Add(goods_id);
                 }
             }
 
+            //判断所选数据个数，需>0
+            if (listId.Count == 0)
+            {
+                MessageBox.Show("请选择要从购物清单删除的商品！", "移除购物清单提示",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                if (MessageBox.Show("您确定要将所选商品移除购物清单吗？", "移除购物清单提示",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    //启动事务
+                    using (SqlConnection connection = new SqlConnection(SqlHelper.connectionString))
+                    {
+                        connection.Open();
+                        SqlTransaction transaction = connection.BeginTransaction();
+                        SqlCommand command = new SqlCommand();
+                        command.Connection = connection;
+                        command.Transaction = transaction;
+                        try
+                        {
+                            foreach (String goods_id in listId)
+                            {
+                                command.CommandText = "update GoodsList set IsSelect=0 where goods_id=@goods_id";
+                                SqlParameter parameter = new SqlParameter("@goods_id", goods_id);
+                                command.Parameters.Clear();
+                                command.Parameters.Add(parameter);
+                                count += command.ExecuteNonQuery();
+                            }
+                            transaction.Commit();
+                        }
+                        catch (SqlException ex)
+                        {
+                            transaction.Rollback();
+                            MessageBox.Show("移除商品出现异常！", "移除购物清单提示",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                    if (count == listId.Count)
+                    {
+                        MessageBox.Show("移除商品成功！", "移除购物清单提示",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+
+                    //刷新购物清单
+                    string sql = "select goods_id,goods_name,goods_units," +
+                        "goods_retailPrice from GoodsList where IsSelect=1";
+                    DataTable dataTableBookList = SqlHelper.GetDataTable(sql);
+                    dataGridView_SalesList.DataSource = dataTableBookList;
+
+                    //刷新商品列表
+                    string sql1 = "select goods_id,goods_name,goods_type,goods_units," +
+                        "goods_retailPrice from GoodsList where IsDeleted=0 and IsSelect=0";
+                    DataTable dataTableGoodsList = SqlHelper.GetDataTable(sql1);
+                    dataGridView_GoodsList.DataSource = dataTableGoodsList;
+
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// 点击提交按钮，将出售的商品信息写入售出商品表，从商品列表移除（IsDelete置1，IsSelect置0）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btSubmit_Click(object sender, EventArgs e)
+        {
+            //获取数据
+            List<String> listId = new List<String>();
+            for (int i = 0; i < dataGridView_SalesList.Rows.Count; i++)
+            {
+                DataRow dataRow = (dataGridView_SalesList.Rows[i].DataBoundItem as DataRowView).Row;
+                String goods_id = dataRow["goods_id"].ToString();
+                listId.Add(goods_id);
+
+            }
+            //判断清单有没有数据
+            if (listId.Count == 0)
+            {
+                MessageBox.Show("请从商品列表选择商品！", "购物提示",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                if (MessageBox.Show("您确定要购买商品吗？", "购物提示",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    //启动事务
+                    using (SqlConnection connection = new SqlConnection(SqlHelper.connectionString))
+                    {
+                        connection.Open();
+                        SqlTransaction transaction = connection.BeginTransaction();
+                        SqlCommand command = new SqlCommand();
+                        command.Connection = connection;
+                        command.Transaction = transaction;
+                        try
+                        {
+                            //LoginForm iden = new LoginForm();
+                            String goods_name = "";
+                            String goods_type = "";
+                            String goods_units = "";
+                            String goods_retailPrice = "";
+                            String goods_soldDate = "";
+                            String goods_salespersonID = LoginForm.Employee_id;
+                            foreach (String goods_id in listId)
+                            {
+                                //获取数据
+                                string sqlGetDate = "select goods_id,goods_name,goods_type,goods_units,goods_retailPrice from GoodsList " +
+                                    "where goods_id=@goods_id";
+                                SqlParameter paraID = new SqlParameter("@goods_id", goods_id);
+                                SqlDataReader dataReader = SqlHelper.ExecuteReader(sqlGetDate, paraID);
+                                //读取数据
+                                if (dataReader.Read())//没有这一步会说DataReader没有启动
+                                {
+                                    goods_name = dataReader["goods_name"].ToString();
+                                    goods_type = dataReader["goods_type"].ToString();
+                                    goods_units = dataReader["goods_units"].ToString();
+                                    goods_retailPrice = dataReader["goods_retailPrice"].ToString();
+                                    goods_soldDate = DateTime.Now.ToString("yyyy.MM.dd");
+                                    
+                                }
+                                dataReader.Close();
+
+                                if ("".Equals(goods_id)|| "".Equals(goods_type) || "".Equals(goods_units)
+                                    || "".Equals(goods_retailPrice) || "".Equals(goods_soldDate)|| "".Equals(goods_salespersonID))
+                                {
+                                    MessageBox.Show("数据出现异常！", "购物提示",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                else
+                                {
+                                    //执行添加
+                                    string sqlEdit = "insert into SalesList " +
+                                        "(goods_id,goods_name,goods_type,goods_units,goods_retailPrice,goods_soldDate,goods_salespersonID) " +
+                                        "values (@goods_id,@goods_name,@goods_type,@goods_units,@goods_retailPrice,@goods_soldDate,@goods_salespersonID)";
+                                    SqlParameter[] parametersEdit =
+                                    {
+                                    new SqlParameter("@goods_id",goods_id),
+                                    new SqlParameter("@goods_name",goods_name),
+                                    new SqlParameter("@goods_type",goods_type),
+                                    new SqlParameter("@goods_units",goods_units),
+                                    new SqlParameter("@goods_retailPrice",goods_retailPrice),
+                                    new SqlParameter("@goods_soldDate",goods_soldDate),
+                                    new SqlParameter("@goods_salespersonID",goods_salespersonID)
+                                };
+
+                                    //执行并返回
+                                    int count = SqlHelper.ExecuteNonQuery(sqlEdit, parametersEdit);
+                                    if (count > 0)
+                                    {
+                                        //在商品列表修改为不可见
+                                        command.CommandText = "update GoodsList set IsSelect=0 where goods_id=@goods_id " +
+                                            "update GoodsList set IsDeleted = 1 where goods_id =@goods_id ";
+                                        SqlParameter parameter = new SqlParameter("@goods_id", goods_id);
+                                        command.Parameters.Clear();
+                                        command.Parameters.Add(parameter);
+                                        count += command.ExecuteNonQuery();
+
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("数据库修改失败！", "购物提示",
+                                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        return;
+                                    }
+                                }
+                            }
+                            transaction.Commit();
+                        }
+                        catch (SqlException ex)
+                        {
+                            transaction.Rollback();
+                            MessageBox.Show("购买商品出现异常！", "购物提示",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                    if (count == listId.Count)
+                    {
+                        MessageBox.Show("购买商品成功！", "购物提示",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+
+                    //刷新购物清单
+                    string sql = "select goods_id,goods_name,goods_units," +
+                        "goods_retailPrice from GoodsList where IsSelect=1";
+                    DataTable dataTableBookList = SqlHelper.GetDataTable(sql);
+                    dataGridView_SalesList.DataSource = dataTableBookList;
+
+                    //刷新商品列表
+                    string sql1 = "select goods_id,goods_name,goods_type,goods_units," +
+                        "goods_retailPrice from GoodsList where IsDeleted=0 and IsSelect=0";
+                    DataTable dataTableGoodsList = SqlHelper.GetDataTable(sql1);
+                    dataGridView_GoodsList.DataSource = dataTableGoodsList;
+                }
+            }
         }
     }
 }

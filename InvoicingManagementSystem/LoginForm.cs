@@ -6,6 +6,7 @@ namespace InvoicingManagementSystem
 {
     public partial class LoginForm : Form
     {
+        public static string Employee_id;
         public LoginForm()
         {
             InitializeComponent();
@@ -80,7 +81,11 @@ namespace InvoicingManagementSystem
 
                     else
                     {
-                        int count = (int)o;
+                        int count = (int)o;//不知道是用来做什么的了
+                        Employee_id = id;//传值，登记各种表的操作员
+                        //CA_checkOut cA_Check = new CA_checkOut();
+                        //cA_Check.Tag = Employee_id;
+
                         MessageBox.Show("登录成功！", "登录提示",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                         //转到不同的主页面

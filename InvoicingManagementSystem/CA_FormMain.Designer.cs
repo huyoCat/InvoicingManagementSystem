@@ -59,12 +59,14 @@
             this.checkTheOrder.Name = "checkTheOrder";
             this.checkTheOrder.Size = new System.Drawing.Size(92, 21);
             this.checkTheOrder.Text = "查询历史交易";
+            this.checkTheOrder.Click += new System.EventHandler(this.history_Click);
             // 
             // exitSystem
             // 
             this.exitSystem.Name = "exitSystem";
             this.exitSystem.Size = new System.Drawing.Size(68, 21);
             this.exitSystem.Text = "退出系统";
+            this.exitSystem.Click += new System.EventHandler(this.exit_Click);
             // 
             // CA_FormMain
             // 
@@ -76,6 +78,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "CA_FormMain";
             this.Text = "收银界面";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CAFormMain_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

@@ -38,20 +38,19 @@
             this.goods_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.goods_units = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.goods_retailPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridView_SalesList = new System.Windows.Forms.DataGridView();
             this.ColOrderCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.units = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.retailPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btClear = new System.Windows.Forms.Button();
             this.btSubmit = new System.Windows.Forms.Button();
             this.btDelete = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxKeyword = new System.Windows.Forms.ComboBox();
             this.btADD = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GoodsList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_SalesList)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox_search
@@ -95,7 +94,6 @@
             this.dataGridView_GoodsList.RowTemplate.Height = 23;
             this.dataGridView_GoodsList.Size = new System.Drawing.Size(650, 358);
             this.dataGridView_GoodsList.TabIndex = 4;
-            //this.dataGridView_GoodsList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_GoodsList_CellContentClick);
             // 
             // ColChecked
             // 
@@ -137,20 +135,21 @@
             this.goods_retailPrice.Name = "goods_retailPrice";
             this.goods_retailPrice.ReadOnly = true;
             // 
-            // dataGridView2
+            // dataGridView_SalesList
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridView_SalesList.AllowUserToAddRows = false;
+            this.dataGridView_SalesList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_SalesList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColOrderCheck,
             this.id,
             this.name,
             this.units,
             this.retailPrice});
-            this.dataGridView2.Location = new System.Drawing.Point(706, 59);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 23;
-            this.dataGridView2.Size = new System.Drawing.Size(549, 285);
-            this.dataGridView2.TabIndex = 5;
+            this.dataGridView_SalesList.Location = new System.Drawing.Point(706, 59);
+            this.dataGridView_SalesList.Name = "dataGridView_SalesList";
+            this.dataGridView_SalesList.RowTemplate.Height = 23;
+            this.dataGridView_SalesList.Size = new System.Drawing.Size(549, 285);
+            this.dataGridView_SalesList.TabIndex = 5;
             // 
             // ColOrderCheck
             // 
@@ -159,36 +158,31 @@
             // 
             // id
             // 
+            this.id.DataPropertyName = "goods_id";
             this.id.HeaderText = "商品编号";
             this.id.Name = "id";
             this.id.ReadOnly = true;
             // 
             // name
             // 
+            this.name.DataPropertyName = "goods_name";
             this.name.HeaderText = "名称";
             this.name.Name = "name";
             this.name.ReadOnly = true;
             // 
             // units
             // 
+            this.units.DataPropertyName = "goods_units";
             this.units.HeaderText = "单位";
             this.units.Name = "units";
             this.units.ReadOnly = true;
             // 
             // retailPrice
             // 
+            this.retailPrice.DataPropertyName = "goods_retailPrice";
             this.retailPrice.HeaderText = "零售价";
             this.retailPrice.Name = "retailPrice";
             this.retailPrice.ReadOnly = true;
-            // 
-            // btClear
-            // 
-            this.btClear.Location = new System.Drawing.Point(1049, 374);
-            this.btClear.Name = "btClear";
-            this.btClear.Size = new System.Drawing.Size(75, 23);
-            this.btClear.TabIndex = 6;
-            this.btClear.Text = "清空";
-            this.btClear.UseVisualStyleBackColor = true;
             // 
             // btSubmit
             // 
@@ -198,15 +192,17 @@
             this.btSubmit.TabIndex = 7;
             this.btSubmit.Text = "提交";
             this.btSubmit.UseVisualStyleBackColor = true;
+            this.btSubmit.Click += new System.EventHandler(this.btSubmit_Click);
             // 
             // btDelete
             // 
-            this.btDelete.Location = new System.Drawing.Point(917, 374);
+            this.btDelete.Location = new System.Drawing.Point(1053, 374);
             this.btDelete.Name = "btDelete";
             this.btDelete.Size = new System.Drawing.Size(75, 23);
             this.btDelete.TabIndex = 8;
             this.btDelete.Text = "删除选择";
             this.btDelete.UseVisualStyleBackColor = true;
+            this.btDelete.Click += new System.EventHandler(this.btDelete_Click);
             // 
             // label2
             // 
@@ -245,8 +241,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btDelete);
             this.Controls.Add(this.btSubmit);
-            this.Controls.Add(this.btClear);
-            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.dataGridView_SalesList);
             this.Controls.Add(this.dataGridView_GoodsList);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btSearch);
@@ -255,7 +250,7 @@
             this.Text = "CA_checkOut";
             this.Load += new System.EventHandler(this.CA_checkOut_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GoodsList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_SalesList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -265,16 +260,10 @@
 
         private System.Windows.Forms.TextBox textBox_search;
         private System.Windows.Forms.Button btSearch;
-        private System.Windows.Forms.ComboBox comboBox_keyword;
+        //private System.Windows.Forms.ComboBox comboBox_keyword;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView_GoodsList;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ColOrderCheck;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn units;
-        private System.Windows.Forms.DataGridViewTextBoxColumn retailPrice;
-        private System.Windows.Forms.Button btClear;
+        private System.Windows.Forms.DataGridView dataGridView_SalesList;
         private System.Windows.Forms.Button btSubmit;
         private System.Windows.Forms.Button btDelete;
         private System.Windows.Forms.Label label2;
@@ -286,5 +275,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn goods_units;
         private System.Windows.Forms.DataGridViewTextBoxColumn goods_retailPrice;
         private System.Windows.Forms.Button btADD;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ColOrderCheck;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn units;
+        private System.Windows.Forms.DataGridViewTextBoxColumn retailPrice;
     }
 }
