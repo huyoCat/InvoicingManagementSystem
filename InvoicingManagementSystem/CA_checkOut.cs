@@ -33,7 +33,7 @@ namespace InvoicingManagementSystem
 
         private void InitSelect()
         {
-            string sql = "select id,name from saleKeywordList";
+            string sql = "select id,name from saleKeywordList where id<3";
             DataTable dataTableSelectList = SqlHelper.GetDataTable(sql);
             DataRow dataRowSelectList = dataTableSelectList.NewRow();
             dataRowSelectList["id"] = 0;
@@ -60,13 +60,13 @@ namespace InvoicingManagementSystem
         {
             //刷新购物清单
             string sql = "select goods_id,goods_name,goods_units," +
-                "goods_retailPrice from GoodsList where IsSelect=1";
+                "goods_retailPrice from GoodsList where IsSelect=1 and IsDeleted=0";
             DataTable dataTableBookList = SqlHelper.GetDataTable(sql);
             dataGridView_SalesList.DataSource = dataTableBookList;
 
             //刷新商品列表
             string sql1 = "select goods_id,goods_name,goods_type,goods_units," +
-                "goods_retailPrice,goods_inventory from GoodsList where goods_inventory>0";
+                "goods_retailPrice,goods_inventory from GoodsList where goods_inventory>0 and IsDeleted=0";
             DataTable dataTableGoodsList = SqlHelper.GetDataTable(sql1);
             dataGridView_GoodsList.DataSource = dataTableGoodsList;
         }
@@ -78,7 +78,7 @@ namespace InvoicingManagementSystem
             string keyWord = textBox_search.Text.Trim();
 
             string sql = "select goods_id,goods_name,goods_type,goods_units," +
-                "goods_retailPrice,goods_inventory from GoodsList where goods_inventory>0";
+                "goods_retailPrice,goods_inventory from GoodsList where goods_inventory>0 and IsDeleted=0";
             //sql += " where 1=1";
             if (SearchSID > 0)
             {
@@ -381,7 +381,7 @@ namespace InvoicingManagementSystem
                                     new SqlParameter("@goods_retailPrice",goods_retailPrice),
                                     new SqlParameter("@goods_soldDate",goods_soldDate),
                                     new SqlParameter("@goods_salespersonID",goods_salespersonID)
-                                };
+                                    };
 
                                     //执行并返回
                                     int count = SqlHelper.ExecuteNonQuery(sqlEdit, parametersEdit);
@@ -421,7 +421,6 @@ namespace InvoicingManagementSystem
                         MessageBox.Show("购买商品成功！", "购物提示",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-
 
                     //刷新
                     SqlDataRefresh();

@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -91,6 +92,18 @@
     <Compile Include="WH_FormMain.Designer.cs">
       <DependentUpon>WH_FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="WH_PurchasingOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WH_PurchasingOrder.Designer.cs">
+      <DependentUpon>WH_PurchasingOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WH_SelectInventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WH_SelectInventory.Designer.cs">
+      <DependentUpon>WH_SelectInventory.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="CA_checkOut.resx">
       <DependentUpon>CA_checkOut.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,6 +127,12 @@
     </Compile>
     <EmbeddedResource Include="WH_FormMain.resx">
       <DependentUpon>WH_FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WH_PurchasingOrder.resx">
+      <DependentUpon>WH_PurchasingOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WH_SelectInventory.resx">
+      <DependentUpon>WH_SelectInventory.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace InvoicingManagementSystem
@@ -24,7 +18,7 @@ namespace InvoicingManagementSystem
             int SearchSID = (int)comboBoxKeyword.SelectedValue;
             string keyWord = textBox_search.Text.Trim();
 
-            string sql = "select goods_id,goods_name,goods_type,goods_units," +
+            string sql = "select goods_id,goods_name,goods_type,goods_number,goods_units," +
                 "goods_retailPrice,goods_soldDate,goods_salespersonID from SalesList where 1=1";
             //where 1=1的必要性是防止多重条件时where关键字重复
             if (SearchSID > 0)
@@ -71,7 +65,7 @@ namespace InvoicingManagementSystem
 
         private void InitSelect()
         {
-            string sql = "select id,name from saleKeywordList";
+            string sql = "select id,name from saleKeywordList where id<3";
             DataTable dataTableSelectList = SqlHelper.GetDataTable(sql);
             DataRow dataRowSelectList = dataTableSelectList.NewRow();
             dataRowSelectList["id"] = 0;
@@ -85,7 +79,7 @@ namespace InvoicingManagementSystem
 
         private void InitAllSalesList()
         {
-            string sql = "select goods_id,goods_name,goods_type,goods_units," +
+            string sql = "select goods_id,goods_name,goods_type,goods_number,goods_units," +
                 "goods_retailPrice,goods_soldDate,goods_salespersonID from SalesList";
             DataTable dataTableSalesList = SqlHelper.GetDataTable(sql);
             dataGridView_SalesList.DataSource = dataTableSalesList;
