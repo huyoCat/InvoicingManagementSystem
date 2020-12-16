@@ -34,16 +34,6 @@
             this.btSearch = new System.Windows.Forms.Button();
             this.textBox_search = new System.Windows.Forms.TextBox();
             this.dataGridView_OrderList = new System.Windows.Forms.DataGridView();
-            this.bt_putOut = new System.Windows.Forms.Button();
-            this.bt_delete = new System.Windows.Forms.Button();
-            this.lbGoods_id = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lb_goods_name = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.tbGoods_ShowDate = new System.Windows.Forms.TextBox();
-            this.tbNote = new System.Windows.Forms.TextBox();
             this.ColCheck = new System.Windows.Forms.DataGridViewLinkColumn();
             this.goods_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.goods_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,6 +47,16 @@
             this.order_inventoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PutIn_inventoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.goods_note = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bt_putOut = new System.Windows.Forms.Button();
+            this.bt_delete = new System.Windows.Forms.Button();
+            this.lbGoods_id = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lb_goods_name = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.tbGoods_ShowDate = new System.Windows.Forms.TextBox();
+            this.tbNote = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tbgoods_retailPrice = new System.Windows.Forms.TextBox();
             this.tbgoods_productionDate = new System.Windows.Forms.TextBox();
@@ -124,90 +124,6 @@
             this.dataGridView_OrderList.Size = new System.Drawing.Size(1295, 245);
             this.dataGridView_OrderList.TabIndex = 21;
             this.dataGridView_OrderList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_OrderList_CellContentClick);
-            // 
-            // bt_putOut
-            // 
-            this.bt_putOut.Location = new System.Drawing.Point(83, 400);
-            this.bt_putOut.Name = "bt_putOut";
-            this.bt_putOut.Size = new System.Drawing.Size(74, 22);
-            this.bt_putOut.TabIndex = 22;
-            this.bt_putOut.Text = "上架";
-            this.bt_putOut.UseVisualStyleBackColor = true;
-            this.bt_putOut.Click += new System.EventHandler(this.bt_putOut_Click);
-            // 
-            // bt_delete
-            // 
-            this.bt_delete.Location = new System.Drawing.Point(250, 400);
-            this.bt_delete.Name = "bt_delete";
-            this.bt_delete.Size = new System.Drawing.Size(74, 22);
-            this.bt_delete.TabIndex = 23;
-            this.bt_delete.Text = "删除";
-            this.bt_delete.UseVisualStyleBackColor = true;
-            // 
-            // lbGoods_id
-            // 
-            this.lbGoods_id.Location = new System.Drawing.Point(83, 323);
-            this.lbGoods_id.Name = "lbGoods_id";
-            this.lbGoods_id.Size = new System.Drawing.Size(109, 21);
-            this.lbGoods_id.TabIndex = 24;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 326);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 12);
-            this.label2.TabIndex = 25;
-            this.label2.Text = "商品编号：";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(203, 326);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 12);
-            this.label3.TabIndex = 26;
-            this.label3.Text = "商品名称：";
-            // 
-            // lb_goods_name
-            // 
-            this.lb_goods_name.AutoSize = true;
-            this.lb_goods_name.Location = new System.Drawing.Point(274, 326);
-            this.lb_goods_name.Name = "lb_goods_name";
-            this.lb_goods_name.Size = new System.Drawing.Size(0, 12);
-            this.lb_goods_name.TabIndex = 27;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(465, 326);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 12);
-            this.label5.TabIndex = 28;
-            this.label5.Text = "上架日期：";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(678, 326);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 12);
-            this.label6.TabIndex = 29;
-            this.label6.Text = "备注：";
-            // 
-            // tbGoods_ShowDate
-            // 
-            this.tbGoods_ShowDate.Location = new System.Drawing.Point(536, 323);
-            this.tbGoods_ShowDate.Name = "tbGoods_ShowDate";
-            this.tbGoods_ShowDate.Size = new System.Drawing.Size(136, 21);
-            this.tbGoods_ShowDate.TabIndex = 30;
-            // 
-            // tbNote
-            // 
-            this.tbNote.Location = new System.Drawing.Point(725, 323);
-            this.tbNote.Name = "tbNote";
-            this.tbNote.Size = new System.Drawing.Size(249, 21);
-            this.tbNote.TabIndex = 31;
             // 
             // ColCheck
             // 
@@ -300,6 +216,91 @@
             this.goods_note.HeaderText = "备注";
             this.goods_note.Name = "goods_note";
             this.goods_note.ReadOnly = true;
+            // 
+            // bt_putOut
+            // 
+            this.bt_putOut.Location = new System.Drawing.Point(83, 400);
+            this.bt_putOut.Name = "bt_putOut";
+            this.bt_putOut.Size = new System.Drawing.Size(74, 22);
+            this.bt_putOut.TabIndex = 22;
+            this.bt_putOut.Text = "上架";
+            this.bt_putOut.UseVisualStyleBackColor = true;
+            this.bt_putOut.Click += new System.EventHandler(this.bt_putOut_Click);
+            // 
+            // bt_delete
+            // 
+            this.bt_delete.Location = new System.Drawing.Point(250, 400);
+            this.bt_delete.Name = "bt_delete";
+            this.bt_delete.Size = new System.Drawing.Size(74, 22);
+            this.bt_delete.TabIndex = 23;
+            this.bt_delete.Text = "删除";
+            this.bt_delete.UseVisualStyleBackColor = true;
+            this.bt_delete.Click += new System.EventHandler(this.bt_delete_Click);
+            // 
+            // lbGoods_id
+            // 
+            this.lbGoods_id.Location = new System.Drawing.Point(131, 323);
+            this.lbGoods_id.Name = "lbGoods_id";
+            this.lbGoods_id.Size = new System.Drawing.Size(61, 21);
+            this.lbGoods_id.TabIndex = 24;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 326);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(113, 12);
+            this.label2.TabIndex = 25;
+            this.label2.Text = "输入新的商品编号：";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(203, 326);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 12);
+            this.label3.TabIndex = 26;
+            this.label3.Text = "商品名称：";
+            // 
+            // lb_goods_name
+            // 
+            this.lb_goods_name.AutoSize = true;
+            this.lb_goods_name.Location = new System.Drawing.Point(274, 326);
+            this.lb_goods_name.Name = "lb_goods_name";
+            this.lb_goods_name.Size = new System.Drawing.Size(0, 12);
+            this.lb_goods_name.TabIndex = 27;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(465, 326);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 12);
+            this.label5.TabIndex = 28;
+            this.label5.Text = "上架日期：";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(678, 326);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(41, 12);
+            this.label6.TabIndex = 29;
+            this.label6.Text = "备注：";
+            // 
+            // tbGoods_ShowDate
+            // 
+            this.tbGoods_ShowDate.Location = new System.Drawing.Point(536, 323);
+            this.tbGoods_ShowDate.Name = "tbGoods_ShowDate";
+            this.tbGoods_ShowDate.Size = new System.Drawing.Size(136, 21);
+            this.tbGoods_ShowDate.TabIndex = 30;
+            // 
+            // tbNote
+            // 
+            this.tbNote.Location = new System.Drawing.Point(725, 323);
+            this.tbNote.Name = "tbNote";
+            this.tbNote.Size = new System.Drawing.Size(249, 21);
+            this.tbNote.TabIndex = 31;
             // 
             // label4
             // 

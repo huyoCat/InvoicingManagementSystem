@@ -60,12 +60,12 @@ namespace InvoicingManagementSystem
                 if (SearchSID == 3)
                 {
                     //按照库存排序
-                    sql += "select * from GoodsList order by goods_inventory";
+                    sql += "order by goods_inventory";
                 }
                 if (SearchSID == 4)
                 {
                     //按照日期顺序排序
-                    sql += "select * from GoodsList order by goods_expirationDate";
+                    sql += "order by goods_expirationDate";
                 }
             }
 
@@ -257,6 +257,7 @@ namespace InvoicingManagementSystem
 
                                 if (dataReader.Read())//没有这一步会说DataReader没有启动
                                 {
+                                    //goods_id = dataReader["goods_id"].ToString();
                                     goods_name = dataReader["goods_name"].ToString();
                                     goods_type = dataReader["goods_type"].ToString();
                                     goods_units = dataReader["goods_units"].ToString();
@@ -280,20 +281,21 @@ namespace InvoicingManagementSystem
                                 {
                                     //执行添加
                                     string sqlEdit = "insert into orderList " +
-                                        "(goods_name,goods_type,goods_units,goods_purchasingCost,goods_supplier,goods_purNumber," +
+                                        "(goods_id,goods_name,goods_type,goods_units,goods_purchasingCost,goods_supplier,goods_purNumber," +
                                         "goods_SubmitDate,order_inventoryID) " +
-                                        "values (@goods_name,@goods_type,@goods_units,@goods_purchasingCost,@goods_supplier," +
+                                        "values (@goods_id,@goods_name,@goods_type,@goods_units,@goods_purchasingCost,@goods_supplier," +
                                         "@goods_purNumber,@goods_SubmitDate,@order_inventoryID)";
                                     SqlParameter[] parametersEdit =
                                     {
-                                    new SqlParameter("@goods_name",goods_name),
-                                    new SqlParameter("@goods_type",goods_type),
-                                    new SqlParameter("@goods_units",goods_units),
-                                    new SqlParameter("@goods_purchasingCost",goods_purchasingCost),
-                                    new SqlParameter("@goods_supplier",goods_supplier),
-                                    new SqlParameter("@goods_purNumber",goods_purNumber),
-                                    new SqlParameter("@goods_SubmitDate",goods_SubmitDate),
-                                    new SqlParameter("@order_inventoryID",order_inventoryID)
+                                        new SqlParameter("@goods_id",goods_id),
+                                        new SqlParameter("@goods_name",goods_name),
+                                        new SqlParameter("@goods_type",goods_type),
+                                        new SqlParameter("@goods_units",goods_units),
+                                        new SqlParameter("@goods_purchasingCost",goods_purchasingCost),
+                                        new SqlParameter("@goods_supplier",goods_supplier),
+                                        new SqlParameter("@goods_purNumber",goods_purNumber),
+                                        new SqlParameter("@goods_SubmitDate",goods_SubmitDate),
+                                        new SqlParameter("@order_inventoryID",order_inventoryID)
                                     };
 
                                     //执行并返回
