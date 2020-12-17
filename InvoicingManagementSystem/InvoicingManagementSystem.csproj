@@ -48,6 +48,30 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AD_addAD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AD_addAD.Designer.cs">
+      <DependentUpon>AD_addAD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AD_addCA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AD_addCA.Designer.cs">
+      <DependentUpon>AD_addCA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AD_addGoodType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AD_addGoodType.Designer.cs">
+      <DependentUpon>AD_addGoodType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AD_addWH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AD_addWH.Designer.cs">
+      <DependentUpon>AD_addWH.cs</DependentUpon>
+    </Compile>
     <Compile Include="AD_FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +129,21 @@
     <Compile Include="WH_SelectInventory.Designer.cs">
       <DependentUpon>WH_SelectInventory.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AD_addAD.resx">
+      <DependentUpon>AD_addAD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AD_addCA.resx">
+      <DependentUpon>AD_addCA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AD_addGoodType.resx">
+      <DependentUpon>AD_addGoodType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AD_addWH.resx">
+      <DependentUpon>AD_addWH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AD_FormMain.resx">
+      <DependentUpon>AD_FormMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CA_checkOut.resx">
       <DependentUpon>CA_checkOut.cs</DependentUpon>
     </EmbeddedResource>
