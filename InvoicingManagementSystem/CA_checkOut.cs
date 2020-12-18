@@ -182,6 +182,7 @@ namespace InvoicingManagementSystem
                     }
                     if (count == listId.Count)
                     {
+                        //lbCost.Text=
                         MessageBox.Show("购物清单添加成功！", "添加购物清单提示",
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -189,7 +190,24 @@ namespace InvoicingManagementSystem
 
                     //刷新
                     SqlDataRefresh();
+                    double sum = 0;
+                    if (dataGridView_SalesList.Rows.Count > 0)
+                    {
+                        for (int i = 0; i < dataGridView_SalesList.Rows.Count; i++)
+                        {
+                            int number = 0;
+                            double retailPrice = 0;
 
+                            DataRow dataRow = (dataGridView_SalesList.Rows[i].DataBoundItem as DataRowView).Row;
+                            DataGridViewCell dataGridViewCell = dataGridView_SalesList.Rows[i].Cells["goods_number"];
+                            int.TryParse(dataGridViewCell.EditedFormattedValue.ToString(), out number);
+                            DataGridViewCell dataGridViewCell1 = dataGridView_SalesList.Rows[i].Cells["retailPrice"];
+                            double.TryParse(dataGridViewCell1.EditedFormattedValue.ToString(), out retailPrice);
+                            sum = number * retailPrice + sum;
+                            
+                        }
+                    }
+                    lbCost.Text = sum.ToString() + "元";
                 }
 
             }
@@ -268,7 +286,24 @@ namespace InvoicingManagementSystem
 
                     //刷新
                     SqlDataRefresh();
+                    double sum = 0;
+                    if (dataGridView_SalesList.Rows.Count > 0)
+                    {
+                        for (int i = 0; i < dataGridView_SalesList.Rows.Count; i++)
+                        {
+                            int number = 0;
+                            double retailPrice = 0;
 
+                            DataRow dataRow = (dataGridView_SalesList.Rows[i].DataBoundItem as DataRowView).Row;
+                            DataGridViewCell dataGridViewCell = dataGridView_SalesList.Rows[i].Cells["goods_number"];
+                            int.TryParse(dataGridViewCell.EditedFormattedValue.ToString(), out number);
+                            DataGridViewCell dataGridViewCell1 = dataGridView_SalesList.Rows[i].Cells["retailPrice"];
+                            double.TryParse(dataGridViewCell1.EditedFormattedValue.ToString(), out retailPrice);
+                            sum = number * retailPrice + sum;
+
+                        }
+                    }
+                    lbCost.Text = sum.ToString() + "元";
                 }
 
             }
@@ -364,6 +399,7 @@ namespace InvoicingManagementSystem
                                 {
                                     MessageBox.Show($"商品:{goods_name}库存不足！", "购物提示",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    return;
                                 }
                                 else
                                 {
@@ -424,8 +460,32 @@ namespace InvoicingManagementSystem
 
                     //刷新
                     SqlDataRefresh();
+                    lbCost.Text = "0";
                 }
             }
+        }
+
+        //当单元格的值改变时触发
+        private void dataGridView_SalesList_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            double sum = 0;
+            if (dataGridView_SalesList.Rows.Count > 0)
+            {
+                for (int i = 0; i < dataGridView_SalesList.Rows.Count; i++)
+                {
+                    int number = 0;
+                    double retailPrice = 0;
+
+                    DataRow dataRow = (dataGridView_SalesList.Rows[i].DataBoundItem as DataRowView).Row;
+                    DataGridViewCell dataGridViewCell = dataGridView_SalesList.Rows[i].Cells["goods_number"];
+                    int.TryParse(dataGridViewCell.EditedFormattedValue.ToString(), out number);
+                    DataGridViewCell dataGridViewCell1 = dataGridView_SalesList.Rows[i].Cells["retailPrice"];
+                    double.TryParse(dataGridViewCell1.EditedFormattedValue.ToString(), out retailPrice);
+                    sum = number * retailPrice + sum;
+
+                }
+            }
+            lbCost.Text = sum.ToString() + "元";
         }
     }
 }

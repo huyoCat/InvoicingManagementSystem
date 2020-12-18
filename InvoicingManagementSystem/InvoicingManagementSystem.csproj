@@ -60,11 +60,23 @@
     <Compile Include="AD_addCA.Designer.cs">
       <DependentUpon>AD_addCA.cs</DependentUpon>
     </Compile>
+    <Compile Include="AD_addGood.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AD_addGood.Designer.cs">
+      <DependentUpon>AD_addGood.cs</DependentUpon>
+    </Compile>
     <Compile Include="AD_addGoodType.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AD_addGoodType.Designer.cs">
       <DependentUpon>AD_addGoodType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AD_addSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AD_addSupplier.Designer.cs">
+      <DependentUpon>AD_addSupplier.cs</DependentUpon>
     </Compile>
     <Compile Include="AD_addWH.cs">
       <SubType>Form</SubType>
@@ -77,6 +89,42 @@
     </Compile>
     <Compile Include="AD_FormMain.Designer.cs">
       <DependentUpon>AD_FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AD_select_employee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AD_select_employee.Designer.cs">
+      <DependentUpon>AD_select_employee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AD_select_goodsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AD_select_goodsList.Designer.cs">
+      <DependentUpon>AD_select_goodsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AD_select_GoodsSort.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AD_select_GoodsSort.Designer.cs">
+      <DependentUpon>AD_select_GoodsSort.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AD_select_orderList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AD_select_orderList.Designer.cs">
+      <DependentUpon>AD_select_orderList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AD_select_salesList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AD_select_salesList.Designer.cs">
+      <DependentUpon>AD_select_salesList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AD_select_Supplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AD_select_Supplier.Designer.cs">
+      <DependentUpon>AD_select_Supplier.cs</DependentUpon>
     </Compile>
     <Compile Include="CA_checkOut.cs">
       <SubType>Form</SubType>
@@ -135,14 +183,38 @@
     <EmbeddedResource Include="AD_addCA.resx">
       <DependentUpon>AD_addCA.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AD_addGood.resx">
+      <DependentUpon>AD_addGood.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AD_addGoodType.resx">
       <DependentUpon>AD_addGoodType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AD_addSupplier.resx">
+      <DependentUpon>AD_addSupplier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AD_addWH.resx">
       <DependentUpon>AD_addWH.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AD_FormMain.resx">
       <DependentUpon>AD_FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AD_select_employee.resx">
+      <DependentUpon>AD_select_employee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AD_select_goodsList.resx">
+      <DependentUpon>AD_select_goodsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AD_select_GoodsSort.resx">
+      <DependentUpon>AD_select_GoodsSort.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AD_select_orderList.resx">
+      <DependentUpon>AD_select_orderList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AD_select_salesList.resx">
+      <DependentUpon>AD_select_salesList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AD_select_Supplier.resx">
+      <DependentUpon>AD_select_Supplier.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CA_checkOut.resx">
       <DependentUpon>CA_checkOut.cs</DependentUpon>

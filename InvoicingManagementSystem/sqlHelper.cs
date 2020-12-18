@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace InvoicingManagementSystem
 {
@@ -113,9 +114,40 @@ namespace InvoicingManagementSystem
                 throw new Exception("执行出现异常", ex);
             }
         }
+        /// <summary>
+        /// 判断是否为日期格式
+        /// </summary>
+        /// <param name="StrSource"></param>
+        /// <returns></returns>
+        public static bool IsDate(string StrSource)
+        {
+            return Regex.IsMatch(StrSource,
+                @"^((((1[6-9]|[2-9]\d)\d{2}).(0?[13578]|1[02]).(0?[1-9]|[12]\d|3[01]))|(((1[6-9]|[2-9]\d)\d{2}).(0?[13456789]|1[012]).(0?[1-9]|[12]\d|30))|(((1[6-9]|[2-9]\d)\d{2}).0?2.(0?[1-9]|1\d|2[0-9]))|(((1[6-9]|[2-9]\d)(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00))-0?2-29-))$");
+        }
 
+        /// <summary>
+        /// 根据下拉列表数值获取相应名称
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="ListName"></param>
+        /// <returns></returns>
+        public static string GetSource(int id, string ListName)
+        {
+            string sqlSelect = "select name from " + ListName + " where id=@id";
+            SqlParameter[] parametersInsert =
+            {
+                new SqlParameter("@id",id)
+            };
+            SqlDataReader dataReader = SqlHelper.ExecuteReader(sqlSelect, parametersInsert);
+            string result = "";
+            if (dataReader.Read())//没有这一步会说DataReader没有启动
+            {
+                result = dataReader["name"].ToString();
+            }
+            dataReader.Close();
 
-        
+            return result;
+        }
     }
 
 }

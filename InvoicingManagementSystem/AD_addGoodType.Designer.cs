@@ -34,14 +34,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btSearch = new System.Windows.Forms.Button();
             this.textBox_search = new System.Windows.Forms.TextBox();
-            this.ColChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Sort_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sort_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tb_typeID = new System.Windows.Forms.TextBox();
             this.tb_typeName = new System.Windows.Forms.TextBox();
             this.btDelete = new System.Windows.Forms.Button();
+            this.ColChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GoodsTypeList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,8 +69,8 @@
             this.dataGridView_GoodsTypeList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_GoodsTypeList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColChecked,
-            this.Sort_id,
-            this.Sort_name});
+            this.id,
+            this.name});
             this.dataGridView_GoodsTypeList.Location = new System.Drawing.Point(12, 49);
             this.dataGridView_GoodsTypeList.Name = "dataGridView_GoodsTypeList";
             this.dataGridView_GoodsTypeList.RowTemplate.Height = 23;
@@ -102,26 +102,6 @@
             this.textBox_search.Name = "textBox_search";
             this.textBox_search.Size = new System.Drawing.Size(137, 21);
             this.textBox_search.TabIndex = 12;
-            // 
-            // ColChecked
-            // 
-            this.ColChecked.HeaderText = "选择";
-            this.ColChecked.Name = "ColChecked";
-            this.ColChecked.Width = 50;
-            // 
-            // Sort_id
-            // 
-            this.Sort_id.DataPropertyName = "Sort_id";
-            this.Sort_id.HeaderText = "商品种类编号";
-            this.Sort_id.Name = "Sort_id";
-            this.Sort_id.ReadOnly = true;
-            // 
-            // Sort_name
-            // 
-            this.Sort_name.DataPropertyName = "Sort_name";
-            this.Sort_name.HeaderText = "商品种类名称";
-            this.Sort_name.Name = "Sort_name";
-            this.Sort_name.ReadOnly = true;
             // 
             // label2
             // 
@@ -165,6 +145,26 @@
             this.btDelete.UseVisualStyleBackColor = true;
             this.btDelete.Click += new System.EventHandler(this.btDelete_Click);
             // 
+            // ColChecked
+            // 
+            this.ColChecked.HeaderText = "选择";
+            this.ColChecked.Name = "ColChecked";
+            this.ColChecked.Width = 50;
+            // 
+            // id
+            // 
+            this.id.DataPropertyName = "id";
+            this.id.HeaderText = "商品种类编号";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            // 
+            // name
+            // 
+            this.name.DataPropertyName = "name";
+            this.name.HeaderText = "商品种类名称";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            // 
             // AD_addGoodType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -195,9 +195,6 @@
         private System.Windows.Forms.Button btADD;
         private System.Windows.Forms.ComboBox comboBoxKeyword;
         private System.Windows.Forms.DataGridView dataGridView_GoodsTypeList;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ColChecked;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Sort_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Sort_name;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btSearch;
         private System.Windows.Forms.TextBox textBox_search;
@@ -206,5 +203,8 @@
         private System.Windows.Forms.TextBox tb_typeID;
         private System.Windows.Forms.TextBox tb_typeName;
         private System.Windows.Forms.Button btDelete;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ColChecked;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn name;
     }
 }

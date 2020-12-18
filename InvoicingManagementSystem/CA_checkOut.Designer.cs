@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.textBox_search = new System.Windows.Forms.TextBox();
             this.btSearch = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -52,6 +52,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxKeyword = new System.Windows.Forms.ComboBox();
             this.btADD = new System.Windows.Forms.Button();
+            this.lbCost = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GoodsList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_SalesList)).BeginInit();
             this.SuspendLayout();
@@ -163,6 +165,7 @@
             this.dataGridView_SalesList.RowTemplate.Height = 23;
             this.dataGridView_SalesList.Size = new System.Drawing.Size(593, 285);
             this.dataGridView_SalesList.TabIndex = 5;
+            this.dataGridView_SalesList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_SalesList_CellEndEdit);
             // 
             // ColOrderCheck
             // 
@@ -187,9 +190,9 @@
             // goods_number
             // 
             this.goods_number.DataPropertyName = "goods_number";
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = "1";
-            this.goods_number.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = "1";
+            this.goods_number.DefaultCellStyle = dataGridViewCellStyle1;
             this.goods_number.HeaderText = "数量";
             this.goods_number.Name = "goods_number";
             // 
@@ -254,11 +257,30 @@
             this.btADD.UseVisualStyleBackColor = true;
             this.btADD.Click += new System.EventHandler(this.btADD_Click);
             // 
+            // lbCost
+            // 
+            this.lbCost.AutoSize = true;
+            this.lbCost.Location = new System.Drawing.Point(826, 374);
+            this.lbCost.Name = "lbCost";
+            this.lbCost.Size = new System.Drawing.Size(0, 12);
+            this.lbCost.TabIndex = 12;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(755, 374);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 12);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "消费总额：";
+            // 
             // CA_checkOut
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1337, 429);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lbCost);
             this.Controls.Add(this.btADD);
             this.Controls.Add(this.comboBoxKeyword);
             this.Controls.Add(this.label2);
@@ -305,5 +327,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn goods_number;
         private System.Windows.Forms.DataGridViewTextBoxColumn units;
         private System.Windows.Forms.DataGridViewTextBoxColumn retailPrice;
+        private System.Windows.Forms.Label lbCost;
+        private System.Windows.Forms.Label label4;
     }
 }

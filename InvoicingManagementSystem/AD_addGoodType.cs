@@ -23,13 +23,13 @@ namespace InvoicingManagementSystem
         private void btADD_Click(object sender, EventArgs e)
         {
             //获取数据
-            int Sort_id = 0;
-            int.TryParse(tb_typeID.Text, out Sort_id);
-            string Sort_name = tb_typeName.Text;
+            int id = 0;
+            int.TryParse(tb_typeID.Text, out id);
+            string name = tb_typeName.Text;
 
             //判断是否为空
-            if ("".Equals(Sort_name) || Sort_name == null ||
-                "".Equals(Sort_id) || Sort_id == 0)
+            if ("".Equals(name) || name == null ||
+                "".Equals(id) || id == 0)
             {
                 MessageBox.Show("请将信息填写完整且确保填写正确！");
                 return;
@@ -38,22 +38,22 @@ namespace InvoicingManagementSystem
             {
                 //查询数据库中是否存在
                 string sqlSelect = "select * from GoodsSortList where " +
-                    "Sort_id=@Sort_id or Sort_name=@Sort_name";
+                    "id=@id or name=@name";
                 SqlParameter[] parametersEdit =
                 {
-                    new SqlParameter("@Sort_id",Sort_id),
-                    new SqlParameter("@Sort_name",Sort_name)
+                    new SqlParameter("@id",id),
+                    new SqlParameter("@name",name)
                 };
                 //执行并返回
                 object o = SqlHelper.ExecuteScalar(sqlSelect, parametersEdit);
                 if (o == null)
                 {
                     //无查询结果，插入数据
-                    string sqlInsert = "insert into GoodsSortList values(@Sort_id,@Sort_name)";
+                    string sqlInsert = "insert into GoodsSortList values(@id,@name)";
                     SqlParameter[] parametersInsert =
                     {
-                        new SqlParameter("@Sort_id",Sort_id),
-                        new SqlParameter("@Sort_name",Sort_name)
+                        new SqlParameter("@id",id),
+                        new SqlParameter("@name",name)
                     };
                     int count = SqlHelper.ExecuteNonQuery(sqlInsert, parametersInsert);
                     if (count > 0)
@@ -115,7 +115,7 @@ namespace InvoicingManagementSystem
             int SearchSID = (int)comboBoxKeyword.SelectedValue;
             string keyWord = textBox_search.Text.Trim();
 
-            string sql = "select * from GoodsSortList where 1=1";
+            string sql = "select * from GoodsSortList where 1=1 ";
             if (SearchSID > 0)
             {
                 if (SearchSID == 6)
@@ -126,7 +126,7 @@ namespace InvoicingManagementSystem
                     }
                     else
                     {
-                        sql += "and Sort_id like @Sort_id";
+                        sql += "and id like @id";
                     }
 
                 }
@@ -138,14 +138,14 @@ namespace InvoicingManagementSystem
                     }
                     else
                     {
-                        sql += "and Sort_name like @Sort_name";
+                        sql += "and name like @name";
                     }
                 }
             }
             SqlParameter[] parameters =
             {
-                new SqlParameter("@Sort_id","%"+keyWord+"%"),
-                new SqlParameter("@Sort_name","%"+keyWord+"%"),
+                new SqlParameter("@id","%"+keyWord+"%"),
+                new SqlParameter("@name","%"+keyWord+"%"),
             };
             DataTable dataTableGoodsList = SqlHelper.GetDataTable(sql, parameters);
             dataGridView_GoodsTypeList.DataSource = dataTableGoodsList;
@@ -168,66 +168,67 @@ namespace InvoicingManagementSystem
                 if (check)
                 {
                     DataRow dataRow = (dataGridView_GoodsTypeList.Rows[i].DataBoundItem as DataRowView).Row;
-                    int Sort_id=0;
-                    int.TryParse(dataRow["Sort_id"].ToString(), out Sort_id);
-                    if (Sort_id != 0)
+                    int id = 0;
+                    int.TryParse(dataRow["id"].ToString(), out id);
+                    if (id != 0)
                     {
-                        listId.Add(Sort_id);
+                        listId.Add(id);
                     }
                 }
+            }
 
-                //判断所选数据个数，需>0
-                if (listId.Count == 0)
+            //判断所选数据个数，需>0
+            if (listId.Count == 0)
+            {
+                MessageBox.Show("请选择需要删除的种类！");
+                return;
+            }
+            else
+            {
+                //执行删除
+                if (MessageBox.Show("您确定要将所选商品种类删除吗？", "删除商品种类提示",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    MessageBox.Show("请选择需要删除的种类！");
-                    return;
-                }
-                else
-                {
-                    //执行删除
-                    if (MessageBox.Show("您确定要将所选商品种类删除吗？", "删除商品种类提示",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    //启动事务
+                    using (SqlConnection connection = new SqlConnection(SqlHelper.connectionString))
                     {
-                        //启动事务
-                        using (SqlConnection connection = new SqlConnection(SqlHelper.connectionString))
+                        connection.Open();
+                        SqlTransaction transaction = connection.BeginTransaction();
+                        SqlCommand command = new SqlCommand();
+                        command.Connection = connection;
+                        command.Transaction = transaction;
+                        try
                         {
-                            connection.Open();
-                            SqlTransaction transaction = connection.BeginTransaction();
-                            SqlCommand command = new SqlCommand();
-                            command.Connection = connection;
-                            command.Transaction = transaction;
-                            try
+                            foreach (int id in listId)
                             {
-                                foreach (int Sort_id in listId)
-                                {
-                                    command.CommandText = "delete from GoodsSortList where Sort_id=@Sort_id";
-                                    SqlParameter parameter = new SqlParameter("@Sort_id", Sort_id);
-                                    command.Parameters.Clear();
-                                    command.Parameters.Add(parameter);
-                                    count += command.ExecuteNonQuery();
-                                }
-                                transaction.Commit();
+                                command.CommandText = "delete from GoodsSortList where id=@id";
+                                SqlParameter parameter = new SqlParameter("@id", id);
+                                command.Parameters.Clear();
+                                command.Parameters.Add(parameter);
+                                count += command.ExecuteNonQuery();
                             }
-                            catch (SqlException ex)
-                            {
-                                transaction.Rollback();
-                                MessageBox.Show("移除商品种类出现异常！", "删除商品种类提示",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                return;
-                            }
+                            transaction.Commit();
                         }
-                        if (count == listId.Count)
+                        catch (SqlException ex)
                         {
-                            MessageBox.Show("移除商品种类成功！", "删除商品种类提示",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            transaction.Rollback();
+                            MessageBox.Show("移除商品种类出现异常！", "删除商品种类提示",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
                         }
-
-                        //刷新
-                        SqlDataRefresh();
-
                     }
+                    if (count == listId.Count)
+                    {
+                        MessageBox.Show("移除商品种类成功！", "删除商品种类提示",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    //刷新
+                    SqlDataRefresh();
+
                 }
             }
         }
     }
+
 }
