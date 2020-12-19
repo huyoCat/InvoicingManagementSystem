@@ -84,6 +84,12 @@
     <Compile Include="AD_addWH.Designer.cs">
       <DependentUpon>AD_addWH.cs</DependentUpon>
     </Compile>
+    <Compile Include="AD_EditGoodInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AD_EditGoodInfo.Designer.cs">
+      <DependentUpon>AD_EditGoodInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="AD_FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,12 +150,6 @@
     <Compile Include="CA_history.Designer.cs">
       <DependentUpon>CA_history.cs</DependentUpon>
     </Compile>
-    <Compile Include="FM_FormMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FM_FormMain.Designer.cs">
-      <DependentUpon>FM_FormMain.cs</DependentUpon>
-    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +159,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sqlHelper.cs" />
+    <Compile Include="TagObject.cs" />
     <Compile Include="WH_FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AD_addWH.resx">
       <DependentUpon>AD_addWH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AD_EditGoodInfo.resx">
+      <DependentUpon>AD_EditGoodInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AD_FormMain.resx">
       <DependentUpon>AD_FormMain.cs</DependentUpon>

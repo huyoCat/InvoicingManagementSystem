@@ -28,15 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.comboBoxKeyword = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btSearch = new System.Windows.Forms.Button();
             this.textBox_search = new System.Windows.Forms.TextBox();
             this.dataGridView_select_goodsList = new System.Windows.Forms.DataGridView();
+            this.btDelete = new System.Windows.Forms.Button();
+            this.check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.delete = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.update = new System.Windows.Forms.DataGridViewLinkColumn();
             this.goods_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.goods_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.goods_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.goods_units = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.goods_retailPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.goods_purchasingCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.goods_productionDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.goods_expirationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,12 +90,19 @@
             // 
             // dataGridView_select_goodsList
             // 
+            this.dataGridView_select_goodsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView_select_goodsList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_select_goodsList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.check,
+            this.delete,
+            this.update,
             this.goods_id,
             this.goods_name,
             this.goods_type,
             this.goods_units,
+            this.goods_retailPrice,
             this.goods_purchasingCost,
             this.goods_productionDate,
             this.goods_expirationDate,
@@ -101,6 +115,39 @@
             this.dataGridView_select_goodsList.RowTemplate.Height = 23;
             this.dataGridView_select_goodsList.Size = new System.Drawing.Size(783, 329);
             this.dataGridView_select_goodsList.TabIndex = 21;
+            this.dataGridView_select_goodsList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_select_goodsList_CellContentClick);
+            // 
+            // btDelete
+            // 
+            this.btDelete.Location = new System.Drawing.Point(471, 3);
+            this.btDelete.Name = "btDelete";
+            this.btDelete.Size = new System.Drawing.Size(75, 23);
+            this.btDelete.TabIndex = 26;
+            this.btDelete.Text = "批量删除";
+            this.btDelete.UseVisualStyleBackColor = true;
+            this.btDelete.Click += new System.EventHandler(this.btDelete_Click);
+            // 
+            // check
+            // 
+            this.check.HeaderText = "选择";
+            this.check.Name = "check";
+            this.check.Width = 50;
+            // 
+            // delete
+            // 
+            dataGridViewCellStyle1.NullValue = "删除";
+            this.delete.DefaultCellStyle = dataGridViewCellStyle1;
+            this.delete.HeaderText = "删除";
+            this.delete.Name = "delete";
+            this.delete.Width = 50;
+            // 
+            // update
+            // 
+            dataGridViewCellStyle2.NullValue = "修改";
+            this.update.DefaultCellStyle = dataGridViewCellStyle2;
+            this.update.HeaderText = "修改";
+            this.update.Name = "update";
+            this.update.Width = 50;
             // 
             // goods_id
             // 
@@ -129,6 +176,13 @@
             this.goods_units.HeaderText = "商品单位";
             this.goods_units.Name = "goods_units";
             this.goods_units.ReadOnly = true;
+            // 
+            // goods_retailPrice
+            // 
+            this.goods_retailPrice.DataPropertyName = "goods_retailPrice";
+            this.goods_retailPrice.HeaderText = "零售价";
+            this.goods_retailPrice.Name = "goods_retailPrice";
+            this.goods_retailPrice.ReadOnly = true;
             // 
             // goods_purchasingCost
             // 
@@ -184,6 +238,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(801, 375);
+            this.Controls.Add(this.btDelete);
             this.Controls.Add(this.comboBoxKeyword);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btSearch);
@@ -205,10 +260,15 @@
         private System.Windows.Forms.Button btSearch;
         private System.Windows.Forms.TextBox textBox_search;
         private System.Windows.Forms.DataGridView dataGridView_select_goodsList;
+        private System.Windows.Forms.Button btDelete;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn check;
+        private System.Windows.Forms.DataGridViewLinkColumn delete;
+        private System.Windows.Forms.DataGridViewLinkColumn update;
         private System.Windows.Forms.DataGridViewTextBoxColumn goods_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn goods_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn goods_type;
         private System.Windows.Forms.DataGridViewTextBoxColumn goods_units;
+        private System.Windows.Forms.DataGridViewTextBoxColumn goods_retailPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn goods_purchasingCost;
         private System.Windows.Forms.DataGridViewTextBoxColumn goods_productionDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn goods_expirationDate;

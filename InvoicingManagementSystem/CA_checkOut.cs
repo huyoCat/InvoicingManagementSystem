@@ -60,7 +60,7 @@ namespace InvoicingManagementSystem
         {
             //刷新购物清单
             string sql = "select goods_id,goods_name,goods_units," +
-                "goods_retailPrice from GoodsList where IsSelect=1 and IsDeleted=0";
+                "goods_retailPrice,goods_inventory from GoodsList where IsSelect=1 and IsDeleted=0";
             DataTable dataTableBookList = SqlHelper.GetDataTable(sql);
             dataGridView_SalesList.DataSource = dataTableBookList;
 

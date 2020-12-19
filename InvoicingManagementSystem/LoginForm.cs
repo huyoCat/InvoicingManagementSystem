@@ -32,10 +32,6 @@ namespace InvoicingManagementSystem
             {
                 iden = Login_administrator.Text;
             }
-            if (Login_financialManager.Checked)//财务管理员
-            {
-                iden = Login_financialManager.Text;
-            }
 
 
             //判断是否为空
@@ -103,11 +99,6 @@ namespace InvoicingManagementSystem
                             if (iden == "仓库管理员")
                             {
                                 WH_FormMain formMain = new WH_FormMain();
-                                formMain.Show();
-                            }
-                            if (iden == "财务管理员")
-                            {
-                                FM_FormMain formMain = new FM_FormMain();
                                 formMain.Show();
                             }
                         }

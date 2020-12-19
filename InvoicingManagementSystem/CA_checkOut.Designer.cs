@@ -41,12 +41,6 @@
             this.goods_retailPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.goods_inventory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridView_SalesList = new System.Windows.Forms.DataGridView();
-            this.ColOrderCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.goods_number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.units = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.retailPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btSubmit = new System.Windows.Forms.Button();
             this.btDelete = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -54,6 +48,13 @@
             this.btADD = new System.Windows.Forms.Button();
             this.lbCost = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.ColOrderCheck = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.goods_number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.inventory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.units = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.retailPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_GoodsList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_SalesList)).BeginInit();
             this.SuspendLayout();
@@ -158,6 +159,7 @@
             this.id,
             this.name,
             this.goods_number,
+            this.inventory,
             this.units,
             this.retailPrice});
             this.dataGridView_SalesList.Location = new System.Drawing.Point(729, 59);
@@ -166,49 +168,6 @@
             this.dataGridView_SalesList.Size = new System.Drawing.Size(593, 285);
             this.dataGridView_SalesList.TabIndex = 5;
             this.dataGridView_SalesList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_SalesList_CellEndEdit);
-            // 
-            // ColOrderCheck
-            // 
-            this.ColOrderCheck.HeaderText = "选择";
-            this.ColOrderCheck.Name = "ColOrderCheck";
-            this.ColOrderCheck.Width = 50;
-            // 
-            // id
-            // 
-            this.id.DataPropertyName = "goods_id";
-            this.id.HeaderText = "商品编号";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            // 
-            // name
-            // 
-            this.name.DataPropertyName = "goods_name";
-            this.name.HeaderText = "名称";
-            this.name.Name = "name";
-            this.name.ReadOnly = true;
-            // 
-            // goods_number
-            // 
-            this.goods_number.DataPropertyName = "goods_number";
-            dataGridViewCellStyle1.Format = "N0";
-            dataGridViewCellStyle1.NullValue = "1";
-            this.goods_number.DefaultCellStyle = dataGridViewCellStyle1;
-            this.goods_number.HeaderText = "数量";
-            this.goods_number.Name = "goods_number";
-            // 
-            // units
-            // 
-            this.units.DataPropertyName = "goods_units";
-            this.units.HeaderText = "单位";
-            this.units.Name = "units";
-            this.units.ReadOnly = true;
-            // 
-            // retailPrice
-            // 
-            this.retailPrice.DataPropertyName = "goods_retailPrice";
-            this.retailPrice.HeaderText = "零售价";
-            this.retailPrice.Name = "retailPrice";
-            this.retailPrice.ReadOnly = true;
             // 
             // btSubmit
             // 
@@ -274,6 +233,59 @@
             this.label4.TabIndex = 13;
             this.label4.Text = "消费总额：";
             // 
+            // ColOrderCheck
+            // 
+            this.ColOrderCheck.HeaderText = "选择";
+            this.ColOrderCheck.Name = "ColOrderCheck";
+            this.ColOrderCheck.Width = 50;
+            // 
+            // id
+            // 
+            this.id.DataPropertyName = "goods_id";
+            this.id.HeaderText = "商品编号";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            // 
+            // name
+            // 
+            this.name.DataPropertyName = "goods_name";
+            this.name.HeaderText = "名称";
+            this.name.Name = "name";
+            this.name.ReadOnly = true;
+            // 
+            // goods_number
+            // 
+            this.goods_number.DataPropertyName = "goods_number";
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = "1";
+            this.goods_number.DefaultCellStyle = dataGridViewCellStyle1;
+            this.goods_number.HeaderText = "购买数量";
+            this.goods_number.Name = "goods_number";
+            this.goods_number.Width = 80;
+            // 
+            // inventory
+            // 
+            this.inventory.DataPropertyName = "goods_inventory";
+            this.inventory.HeaderText = "商品库存";
+            this.inventory.Name = "inventory";
+            this.inventory.ReadOnly = true;
+            this.inventory.Width = 80;
+            // 
+            // units
+            // 
+            this.units.DataPropertyName = "goods_units";
+            this.units.HeaderText = "单位";
+            this.units.Name = "units";
+            this.units.ReadOnly = true;
+            this.units.Width = 60;
+            // 
+            // retailPrice
+            // 
+            this.retailPrice.DataPropertyName = "goods_retailPrice";
+            this.retailPrice.HeaderText = "零售价";
+            this.retailPrice.Name = "retailPrice";
+            this.retailPrice.ReadOnly = true;
+            // 
             // CA_checkOut
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -321,13 +333,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn goods_units;
         private System.Windows.Forms.DataGridViewTextBoxColumn goods_retailPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn goods_inventory;
+        private System.Windows.Forms.Label lbCost;
+        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColOrderCheck;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn goods_number;
+        private System.Windows.Forms.DataGridViewTextBoxColumn inventory;
         private System.Windows.Forms.DataGridViewTextBoxColumn units;
         private System.Windows.Forms.DataGridViewTextBoxColumn retailPrice;
-        private System.Windows.Forms.Label lbCost;
-        private System.Windows.Forms.Label label4;
     }
 }

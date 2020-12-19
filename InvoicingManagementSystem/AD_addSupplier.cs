@@ -47,11 +47,23 @@ namespace InvoicingManagementSystem
                         sql += "and name like @name";
                     }
                 }
+                if (SearchSID == 13)
+                {
+                    if (string.IsNullOrEmpty(keyWord))
+                    {
+                        MessageBox.Show("请输入关键字！");
+                    }
+                    else
+                    {
+                        sql += "and Contact like @Contact";
+                    }
+                }
             }
             SqlParameter[] parameters =
             {
                 new SqlParameter("@id","%"+keyWord+"%"),
                 new SqlParameter("@name","%"+keyWord+"%"),
+                new SqlParameter("@Contact","%"+keyWord+"%"),
             };
             DataTable dataTableGoodsList = SqlHelper.GetDataTable(sql, parameters);
             dataGridView_SupplierList.DataSource = dataTableGoodsList;
@@ -65,7 +77,7 @@ namespace InvoicingManagementSystem
 
         private void InitSelect()
         {
-            string sql = "select id,name from saleKeywordList where id>7 and id<10";
+            string sql = "select id,name from saleKeywordList where id>7 and id<10 or id=13";
             DataTable dataTableSelectList = SqlHelper.GetDataTable(sql);
             DataRow dataRowSelectList = dataTableSelectList.NewRow();
             dataRowSelectList["id"] = 0;

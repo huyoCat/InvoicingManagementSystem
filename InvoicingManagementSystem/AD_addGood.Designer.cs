@@ -77,21 +77,21 @@
             // 
             // tbgoods_units
             // 
-            this.tbgoods_units.Location = new System.Drawing.Point(117, 165);
+            this.tbgoods_units.Location = new System.Drawing.Point(83, 165);
             this.tbgoods_units.Name = "tbgoods_units";
             this.tbgoods_units.Size = new System.Drawing.Size(149, 21);
             this.tbgoods_units.TabIndex = 33;
             // 
             // tbgoods_name
             // 
-            this.tbgoods_name.Location = new System.Drawing.Point(117, 77);
+            this.tbgoods_name.Location = new System.Drawing.Point(83, 77);
             this.tbgoods_name.Name = "tbgoods_name";
             this.tbgoods_name.Size = new System.Drawing.Size(149, 21);
             this.tbgoods_name.TabIndex = 32;
             // 
             // tbgoods_id
             // 
-            this.tbgoods_id.Location = new System.Drawing.Point(117, 36);
+            this.tbgoods_id.Location = new System.Drawing.Point(83, 36);
             this.tbgoods_id.Name = "tbgoods_id";
             this.tbgoods_id.Size = new System.Drawing.Size(149, 21);
             this.tbgoods_id.TabIndex = 31;
@@ -197,35 +197,35 @@
             // 
             // tbgoods_retailPrice
             // 
-            this.tbgoods_retailPrice.Location = new System.Drawing.Point(117, 214);
+            this.tbgoods_retailPrice.Location = new System.Drawing.Point(83, 214);
             this.tbgoods_retailPrice.Name = "tbgoods_retailPrice";
             this.tbgoods_retailPrice.Size = new System.Drawing.Size(149, 21);
             this.tbgoods_retailPrice.TabIndex = 43;
             // 
             // tbgoods_purchasingCost
             // 
-            this.tbgoods_purchasingCost.Location = new System.Drawing.Point(117, 256);
+            this.tbgoods_purchasingCost.Location = new System.Drawing.Point(83, 256);
             this.tbgoods_purchasingCost.Name = "tbgoods_purchasingCost";
             this.tbgoods_purchasingCost.Size = new System.Drawing.Size(149, 21);
             this.tbgoods_purchasingCost.TabIndex = 44;
             // 
             // tbgoods_productionDate
             // 
-            this.tbgoods_productionDate.Location = new System.Drawing.Point(453, 36);
+            this.tbgoods_productionDate.Location = new System.Drawing.Point(430, 36);
             this.tbgoods_productionDate.Name = "tbgoods_productionDate";
             this.tbgoods_productionDate.Size = new System.Drawing.Size(149, 21);
             this.tbgoods_productionDate.TabIndex = 45;
             // 
             // tbgoods_expirationDate
             // 
-            this.tbgoods_expirationDate.Location = new System.Drawing.Point(453, 77);
+            this.tbgoods_expirationDate.Location = new System.Drawing.Point(430, 77);
             this.tbgoods_expirationDate.Name = "tbgoods_expirationDate";
             this.tbgoods_expirationDate.Size = new System.Drawing.Size(149, 21);
             this.tbgoods_expirationDate.TabIndex = 46;
             // 
             // tbgoods_inventory
             // 
-            this.tbgoods_inventory.Location = new System.Drawing.Point(453, 165);
+            this.tbgoods_inventory.Location = new System.Drawing.Point(430, 165);
             this.tbgoods_inventory.Name = "tbgoods_inventory";
             this.tbgoods_inventory.Size = new System.Drawing.Size(149, 21);
             this.tbgoods_inventory.TabIndex = 47;
@@ -233,7 +233,7 @@
             // 
             // tbgoods_note
             // 
-            this.tbgoods_note.Location = new System.Drawing.Point(453, 214);
+            this.tbgoods_note.Location = new System.Drawing.Point(430, 214);
             this.tbgoods_note.Name = "tbgoods_note";
             this.tbgoods_note.Size = new System.Drawing.Size(149, 21);
             this.tbgoods_note.TabIndex = 48;
@@ -250,7 +250,7 @@
             // cbgoods_type
             // 
             this.cbgoods_type.FormattingEnabled = true;
-            this.cbgoods_type.Location = new System.Drawing.Point(117, 124);
+            this.cbgoods_type.Location = new System.Drawing.Point(83, 124);
             this.cbgoods_type.Name = "cbgoods_type";
             this.cbgoods_type.Size = new System.Drawing.Size(149, 20);
             this.cbgoods_type.TabIndex = 50;
@@ -258,7 +258,7 @@
             // cbgoods_supplie
             // 
             this.cbgoods_supplie.FormattingEnabled = true;
-            this.cbgoods_supplie.Location = new System.Drawing.Point(453, 121);
+            this.cbgoods_supplie.Location = new System.Drawing.Point(430, 121);
             this.cbgoods_supplie.Name = "cbgoods_supplie";
             this.cbgoods_supplie.Size = new System.Drawing.Size(149, 20);
             this.cbgoods_supplie.TabIndex = 51;

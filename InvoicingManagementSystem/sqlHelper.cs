@@ -148,6 +148,24 @@ namespace InvoicingManagementSystem
 
             return result;
         }
+
+        public static int GetId(string source,string ListName)
+        {
+            int result = 0;
+            string sqlSelect = "select id from " + ListName + " where name=@source";
+            SqlParameter[] parametersInsert =
+            {
+                new SqlParameter("@source",source)
+            };
+            SqlDataReader dataReader = SqlHelper.ExecuteReader(sqlSelect, parametersInsert);
+            //string result = "";
+            if (dataReader.Read())//没有这一步会说DataReader没有启动
+            {
+                result = (int)dataReader["id"];
+            }
+            dataReader.Close();
+            return result;
+        }
     }
 
 }

@@ -28,16 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.comboBoxKeyword = new System.Windows.Forms.ComboBox();
             this.dataGridView_EmployeeList = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.btSearch = new System.Windows.Forms.Button();
             this.textBox_search = new System.Windows.Forms.TextBox();
-            this.ColChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Employee_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Employee_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Employee_password = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Employee_identify = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.delete = new System.Windows.Forms.DataGridViewLinkColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_EmployeeList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,16 +55,17 @@
             this.dataGridView_EmployeeList.AllowUserToAddRows = false;
             this.dataGridView_EmployeeList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_EmployeeList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColChecked,
             this.Employee_id,
             this.Employee_name,
             this.Employee_password,
-            this.Employee_identify});
+            this.Employee_identify,
+            this.delete});
             this.dataGridView_EmployeeList.Location = new System.Drawing.Point(21, 42);
             this.dataGridView_EmployeeList.Name = "dataGridView_EmployeeList";
             this.dataGridView_EmployeeList.RowTemplate.Height = 23;
-            this.dataGridView_EmployeeList.Size = new System.Drawing.Size(495, 299);
+            this.dataGridView_EmployeeList.Size = new System.Drawing.Size(498, 299);
             this.dataGridView_EmployeeList.TabIndex = 20;
+            this.dataGridView_EmployeeList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_EmployeeList_CellContentClick);
             // 
             // label1
             // 
@@ -90,12 +92,6 @@
             this.textBox_search.Name = "textBox_search";
             this.textBox_search.Size = new System.Drawing.Size(137, 21);
             this.textBox_search.TabIndex = 17;
-            // 
-            // ColChecked
-            // 
-            this.ColChecked.HeaderText = "选择";
-            this.ColChecked.Name = "ColChecked";
-            this.ColChecked.Width = 50;
             // 
             // Employee_id
             // 
@@ -125,11 +121,19 @@
             this.Employee_identify.Name = "Employee_identify";
             this.Employee_identify.ReadOnly = true;
             // 
+            // delete
+            // 
+            dataGridViewCellStyle1.NullValue = "删除";
+            this.delete.DefaultCellStyle = dataGridViewCellStyle1;
+            this.delete.HeaderText = "删除";
+            this.delete.Name = "delete";
+            this.delete.Width = 50;
+            // 
             // AD_select_employee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(543, 360);
+            this.ClientSize = new System.Drawing.Size(548, 360);
             this.Controls.Add(this.comboBoxKeyword);
             this.Controls.Add(this.dataGridView_EmployeeList);
             this.Controls.Add(this.label1);
@@ -148,13 +152,13 @@
 
         private System.Windows.Forms.ComboBox comboBoxKeyword;
         private System.Windows.Forms.DataGridView dataGridView_EmployeeList;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ColChecked;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btSearch;
+        private System.Windows.Forms.TextBox textBox_search;
         private System.Windows.Forms.DataGridViewTextBoxColumn Employee_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Employee_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn Employee_password;
         private System.Windows.Forms.DataGridViewTextBoxColumn Employee_identify;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btSearch;
-        private System.Windows.Forms.TextBox textBox_search;
+        private System.Windows.Forms.DataGridViewLinkColumn delete;
     }
 }

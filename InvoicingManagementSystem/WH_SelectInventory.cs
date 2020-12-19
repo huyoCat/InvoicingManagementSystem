@@ -106,7 +106,7 @@ namespace InvoicingManagementSystem
             //刷新商品列表
             string sql1 = "select goods_id,goods_name,goods_type,goods_units," +
                 "goods_purchasingCost,goods_productionDate,goods_expirationDate,goods_supplier," +
-                "goods_inventory from GoodsList where IsDeleted=0";
+                "goods_inventory from GoodsList where IsDeleted=0 and IsSelect=0";
             DataTable dataTableGoodsList = SqlHelper.GetDataTable(sql1);
             dataGridView_SelectInventory.DataSource = dataTableGoodsList;
 
@@ -331,7 +331,7 @@ namespace InvoicingManagementSystem
                         catch(SqlException ex)
                         {
                             transaction.Rollback();
-                            MessageBox.Show("订购商品出现异常！", "订购提示",
+                            MessageBox.Show("订购商品出现异常！请查看是否含有已订购商品！", "订购提示",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
                             return;
                         }

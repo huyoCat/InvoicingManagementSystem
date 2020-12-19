@@ -80,6 +80,9 @@
             // 
             // dataGridView_select_salesList
             // 
+            this.dataGridView_select_salesList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView_select_salesList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_select_salesList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.goods_id,

@@ -98,5 +98,52 @@ namespace InvoicingManagementSystem
             DataTable dataTableGoodsList = SqlHelper.GetDataTable(sql, parameters);
             dataGridView_EmployeeList.DataSource = dataTableGoodsList;
         }
+
+        /// <summary>
+        /// 删除员工
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dataGridView_EmployeeList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //获取行数据
+            DataRow dataRow = (dataGridView_EmployeeList.Rows[e.RowIndex].DataBoundItem as DataRowView).Row;
+            if (e.RowIndex != -1)
+            {
+                //获取当前单元格
+                DataGridViewCell dataGridViewCell = dataGridView_EmployeeList.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (dataGridViewCell is DataGridViewLinkCell &&
+                    dataGridViewCell.FormattedValue.ToString() == "删除")
+                {
+                    //删除操作
+                    if (MessageBox.Show("您确定要删除该雇员信息吗？", "删除雇员提示",
+                        MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+
+                        string Employee_id = dataRow["Employee_id"].ToString();
+                        //假删除,程序不显示，但数据库数据仍存在
+                        string sqlDel0 = "delete from EmployeeList where Employee_id=@Employee_id";
+                        SqlParameter parameter = new SqlParameter("@Employee_id", Employee_id);
+                        int count = SqlHelper.ExecuteNonQuery(sqlDel0, parameter);
+                        if (count > 0)
+                        {
+                            MessageBox.Show("该雇员信息删除成功！", "删除雇员提示",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //手动刷新信息
+                            DataTable dataTableEmployeeList = (DataTable)dataGridView_EmployeeList.DataSource;
+                            //DGVBookList.DataSource = null;
+                            dataTableEmployeeList.Rows.Remove(dataRow);
+                            dataGridView_EmployeeList.DataSource = dataTableEmployeeList;
+                        }
+                        else
+                        {
+                            MessageBox.Show("该雇员信息删除失败！", "删除雇员提示",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
     }
 }

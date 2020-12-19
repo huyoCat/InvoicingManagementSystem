@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace InvoicingManagementSystem
@@ -64,10 +58,10 @@ namespace InvoicingManagementSystem
 
             string goods_units = tbgoods_units.Text;
 
-            int goods_retailPrice = 0;
-            int goods_purchasingCost = 0;
-            int.TryParse(tbgoods_retailPrice.Text, out goods_retailPrice);
-            int.TryParse(tbgoods_purchasingCost.Text, out goods_purchasingCost);
+            double goods_retailPrice = 0;
+            double goods_purchasingCost = 0;
+            double.TryParse(tbgoods_retailPrice.Text, out goods_retailPrice);
+            double.TryParse(tbgoods_purchasingCost.Text, out goods_purchasingCost);
 
             string goods_productionDate = tbgoods_productionDate.Text;
             string goods_expirationDate = tbgoods_expirationDate.Text;
@@ -83,7 +77,7 @@ namespace InvoicingManagementSystem
             //检查数据是否规范
             if (!SqlHelper.IsDate(goods_productionDate)
                     || !SqlHelper.IsDate(goods_expirationDate)||
-                    goods_purchasingCost==0|| goods_retailPrice==0)
+                    goods_purchasingCost==0|| goods_retailPrice==0|| goods_supplierID==0||id==0)
             {
                 MessageBox.Show("请规范输入数据！");
                 return;

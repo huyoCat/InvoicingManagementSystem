@@ -36,14 +36,13 @@
             this.label_ID = new System.Windows.Forms.Label();
             this.textBox_password = new System.Windows.Forms.TextBox();
             this.textBox_Num = new System.Windows.Forms.TextBox();
-            this.Login_financialManager = new System.Windows.Forms.RadioButton();
             this.Login_administrator = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // Login_warehouseKeeper
             // 
             this.Login_warehouseKeeper.AutoSize = true;
-            this.Login_warehouseKeeper.Location = new System.Drawing.Point(176, 171);
+            this.Login_warehouseKeeper.Location = new System.Drawing.Point(210, 168);
             this.Login_warehouseKeeper.Name = "Login_warehouseKeeper";
             this.Login_warehouseKeeper.Size = new System.Drawing.Size(83, 16);
             this.Login_warehouseKeeper.TabIndex = 21;
@@ -54,7 +53,7 @@
             // Login_cashier
             // 
             this.Login_cashier.AutoSize = true;
-            this.Login_cashier.Location = new System.Drawing.Point(71, 210);
+            this.Login_cashier.Location = new System.Drawing.Point(126, 168);
             this.Login_cashier.Name = "Login_cashier";
             this.Login_cashier.Size = new System.Drawing.Size(59, 16);
             this.Login_cashier.TabIndex = 20;
@@ -64,7 +63,7 @@
             // 
             // button_Exit
             // 
-            this.button_Exit.Location = new System.Drawing.Point(197, 260);
+            this.button_Exit.Location = new System.Drawing.Point(197, 219);
             this.button_Exit.Name = "button_Exit";
             this.button_Exit.Size = new System.Drawing.Size(62, 23);
             this.button_Exit.TabIndex = 19;
@@ -74,7 +73,7 @@
             // 
             // button_Login
             // 
-            this.button_Login.Location = new System.Drawing.Point(71, 260);
+            this.button_Login.Location = new System.Drawing.Point(71, 219);
             this.button_Login.Name = "button_Login";
             this.button_Login.Size = new System.Drawing.Size(62, 23);
             this.button_Login.TabIndex = 18;
@@ -115,21 +114,10 @@
             this.textBox_Num.Size = new System.Drawing.Size(144, 21);
             this.textBox_Num.TabIndex = 14;
             // 
-            // Login_financialManager
-            // 
-            this.Login_financialManager.AutoSize = true;
-            this.Login_financialManager.Location = new System.Drawing.Point(176, 210);
-            this.Login_financialManager.Name = "Login_financialManager";
-            this.Login_financialManager.Size = new System.Drawing.Size(83, 16);
-            this.Login_financialManager.TabIndex = 22;
-            this.Login_financialManager.TabStop = true;
-            this.Login_financialManager.Text = "财务管理员";
-            this.Login_financialManager.UseVisualStyleBackColor = true;
-            // 
             // Login_administrator
             // 
             this.Login_administrator.AutoSize = true;
-            this.Login_administrator.Location = new System.Drawing.Point(71, 171);
+            this.Login_administrator.Location = new System.Drawing.Point(39, 168);
             this.Login_administrator.Name = "Login_administrator";
             this.Login_administrator.Size = new System.Drawing.Size(59, 16);
             this.Login_administrator.TabIndex = 23;
@@ -141,9 +129,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(334, 316);
+            this.ClientSize = new System.Drawing.Size(334, 276);
             this.Controls.Add(this.Login_administrator);
-            this.Controls.Add(this.Login_financialManager);
             this.Controls.Add(this.Login_warehouseKeeper);
             this.Controls.Add(this.Login_cashier);
             this.Controls.Add(this.button_Exit);
@@ -153,7 +140,7 @@
             this.Controls.Add(this.textBox_password);
             this.Controls.Add(this.textBox_Num);
             this.Name = "LoginForm";
-            this.Text = "Form1";
+            this.Text = "登录";
             this.Load += new System.EventHandler(this.LoginForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -170,7 +157,6 @@
         private System.Windows.Forms.Label label_ID;
         private System.Windows.Forms.TextBox textBox_password;
         private System.Windows.Forms.TextBox textBox_Num;
-        private System.Windows.Forms.RadioButton Login_financialManager;
         private System.Windows.Forms.RadioButton Login_administrator;
     }
 }
