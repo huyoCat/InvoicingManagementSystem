@@ -11,6 +11,7 @@ namespace InvoicingManagementSystem
         //windouws身份验证
         //private static readonly string connectionString = "server=.;database=BooksManagementSystem;Integrated Security=true";
         //SQL server验证
+        //本地可以用.  服务器 数据库名称 登录名 密码
         public static readonly string connectionString =
             "server=.;database=InvoicingManagementSystem;uid=sa;pwd=1064534251";
         public static object ExecuteScalar(string sql, params SqlParameter[] parameters)

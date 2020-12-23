@@ -77,7 +77,7 @@ namespace InvoicingManagementSystem
 
                     else
                     {
-                        int count = (int)o;//不知道是用来做什么的了
+                        //int count = (int)o;
                         Employee_id = id;//传值，登记各种表的操作员
                         //CA_checkOut cA_Check = new CA_checkOut();
                         //cA_Check.Tag = Employee_id;

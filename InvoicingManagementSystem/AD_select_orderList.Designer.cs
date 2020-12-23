@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView_order = new System.Windows.Forms.DataGridView();
+            this.comboBoxKeyword = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btSearch = new System.Windows.Forms.Button();
+            this.textBox_search = new System.Windows.Forms.TextBox();
             this.goods_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.goods_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.goods_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,10 +46,6 @@
             this.order_inventoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PutIn_inventoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.goods_note = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.comboBoxKeyword = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btSearch = new System.Windows.Forms.Button();
-            this.textBox_search = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_order)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,6 +74,40 @@
             this.dataGridView_order.RowTemplate.Height = 23;
             this.dataGridView_order.Size = new System.Drawing.Size(697, 349);
             this.dataGridView_order.TabIndex = 17;
+            // 
+            // comboBoxKeyword
+            // 
+            this.comboBoxKeyword.FormattingEnabled = true;
+            this.comboBoxKeyword.Location = new System.Drawing.Point(95, 5);
+            this.comboBoxKeyword.Name = "comboBoxKeyword";
+            this.comboBoxKeyword.Size = new System.Drawing.Size(97, 20);
+            this.comboBoxKeyword.TabIndex = 21;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 12);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "选择查询方式";
+            // 
+            // btSearch
+            // 
+            this.btSearch.Location = new System.Drawing.Point(351, 5);
+            this.btSearch.Name = "btSearch";
+            this.btSearch.Size = new System.Drawing.Size(56, 21);
+            this.btSearch.TabIndex = 19;
+            this.btSearch.Text = "搜索";
+            this.btSearch.UseVisualStyleBackColor = true;
+            this.btSearch.Click += new System.EventHandler(this.btSearch_Click);
+            // 
+            // textBox_search
+            // 
+            this.textBox_search.Location = new System.Drawing.Point(198, 5);
+            this.textBox_search.Name = "textBox_search";
+            this.textBox_search.Size = new System.Drawing.Size(137, 21);
+            this.textBox_search.TabIndex = 18;
             // 
             // goods_id
             // 
@@ -120,9 +154,9 @@
             // goods_purNumber
             // 
             this.goods_purNumber.DataPropertyName = "goods_purNumber";
-            dataGridViewCellStyle1.Format = "N0";
-            dataGridViewCellStyle1.NullValue = "1";
-            this.goods_purNumber.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = "1";
+            this.goods_purNumber.DefaultCellStyle = dataGridViewCellStyle2;
             this.goods_purNumber.HeaderText = "订购数量";
             this.goods_purNumber.Name = "goods_purNumber";
             // 
@@ -160,40 +194,6 @@
             this.goods_note.HeaderText = "备注";
             this.goods_note.Name = "goods_note";
             this.goods_note.ReadOnly = true;
-            // 
-            // comboBoxKeyword
-            // 
-            this.comboBoxKeyword.FormattingEnabled = true;
-            this.comboBoxKeyword.Location = new System.Drawing.Point(95, 5);
-            this.comboBoxKeyword.Name = "comboBoxKeyword";
-            this.comboBoxKeyword.Size = new System.Drawing.Size(97, 20);
-            this.comboBoxKeyword.TabIndex = 21;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 12);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "选择查询方式";
-            // 
-            // btSearch
-            // 
-            this.btSearch.Location = new System.Drawing.Point(351, 5);
-            this.btSearch.Name = "btSearch";
-            this.btSearch.Size = new System.Drawing.Size(56, 21);
-            this.btSearch.TabIndex = 19;
-            this.btSearch.Text = "搜索";
-            this.btSearch.UseVisualStyleBackColor = true;
-            this.btSearch.Click += new System.EventHandler(this.btSearch_Click);
-            // 
-            // textBox_search
-            // 
-            this.textBox_search.Location = new System.Drawing.Point(198, 5);
-            this.textBox_search.Name = "textBox_search";
-            this.textBox_search.Size = new System.Drawing.Size(137, 21);
-            this.textBox_search.TabIndex = 18;
             // 
             // AD_select_orderList
             // 

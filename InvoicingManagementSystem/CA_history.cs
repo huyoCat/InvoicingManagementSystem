@@ -46,6 +46,10 @@ namespace InvoicingManagementSystem
                         sql += "and goods_name like @goods_name";
                     }
                 }
+                if (SearchSID == 5)
+                {
+                    sql += "order by goods_soldDate desc";
+                }
             }
 
             SqlParameter[] parameters =
@@ -65,7 +69,7 @@ namespace InvoicingManagementSystem
 
         private void InitSelect()
         {
-            string sql = "select id,name from saleKeywordList where id<3";
+            string sql = "select id,name from saleKeywordList where id<3 or id=5";
             DataTable dataTableSelectList = SqlHelper.GetDataTable(sql);
             DataRow dataRowSelectList = dataTableSelectList.NewRow();
             dataRowSelectList["id"] = 0;

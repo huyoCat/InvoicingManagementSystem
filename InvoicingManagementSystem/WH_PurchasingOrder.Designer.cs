@@ -28,25 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.comboBoxKeyword = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btSearch = new System.Windows.Forms.Button();
             this.textBox_search = new System.Windows.Forms.TextBox();
             this.dataGridView_OrderList = new System.Windows.Forms.DataGridView();
-            this.ColCheck = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.goods_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.goods_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.goods_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.goods_units = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.goods_purchasingCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.goods_supplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.goods_purNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.goods_SubmitDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.goods_ShowDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.order_inventoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PutIn_inventoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.goods_note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bt_putOut = new System.Windows.Forms.Button();
             this.bt_delete = new System.Windows.Forms.Button();
             this.lbGoods_id = new System.Windows.Forms.TextBox();
@@ -63,6 +50,20 @@
             this.label7 = new System.Windows.Forms.Label();
             this.tbgoods_expirationDate = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.ColCheck = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.order_count = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.goods_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.goods_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.goods_type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.goods_units = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.goods_purchasingCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.goods_supplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.goods_purNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.goods_SubmitDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.goods_ShowDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.order_inventoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PutIn_inventoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.goods_note = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_OrderList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -106,6 +107,7 @@
             this.dataGridView_OrderList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView_OrderList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColCheck,
+            this.order_count,
             this.goods_id,
             this.goods_name,
             this.goods_type,
@@ -124,98 +126,6 @@
             this.dataGridView_OrderList.Size = new System.Drawing.Size(1295, 245);
             this.dataGridView_OrderList.TabIndex = 21;
             this.dataGridView_OrderList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_OrderList_CellContentClick);
-            // 
-            // ColCheck
-            // 
-            dataGridViewCellStyle2.NullValue = "选择";
-            this.ColCheck.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ColCheck.HeaderText = "选择";
-            this.ColCheck.Name = "ColCheck";
-            this.ColCheck.Width = 50;
-            // 
-            // goods_id
-            // 
-            this.goods_id.DataPropertyName = "goods_id";
-            this.goods_id.HeaderText = "商品编号";
-            this.goods_id.Name = "goods_id";
-            this.goods_id.ReadOnly = true;
-            // 
-            // goods_name
-            // 
-            this.goods_name.DataPropertyName = "goods_name";
-            this.goods_name.HeaderText = "商品名称";
-            this.goods_name.Name = "goods_name";
-            this.goods_name.ReadOnly = true;
-            // 
-            // goods_type
-            // 
-            this.goods_type.DataPropertyName = "goods_type";
-            this.goods_type.HeaderText = "商品种类";
-            this.goods_type.Name = "goods_type";
-            this.goods_type.ReadOnly = true;
-            // 
-            // goods_units
-            // 
-            this.goods_units.DataPropertyName = "goods_units";
-            this.goods_units.HeaderText = "商品单位";
-            this.goods_units.Name = "goods_units";
-            this.goods_units.ReadOnly = true;
-            // 
-            // goods_purchasingCost
-            // 
-            this.goods_purchasingCost.DataPropertyName = "goods_purchasingCost";
-            this.goods_purchasingCost.HeaderText = "进货价";
-            this.goods_purchasingCost.Name = "goods_purchasingCost";
-            this.goods_purchasingCost.ReadOnly = true;
-            // 
-            // goods_supplier
-            // 
-            this.goods_supplier.DataPropertyName = "goods_supplier";
-            this.goods_supplier.HeaderText = "供应商";
-            this.goods_supplier.Name = "goods_supplier";
-            this.goods_supplier.ReadOnly = true;
-            // 
-            // goods_purNumber
-            // 
-            this.goods_purNumber.DataPropertyName = "goods_purNumber";
-            this.goods_purNumber.HeaderText = "订购数量";
-            this.goods_purNumber.Name = "goods_purNumber";
-            this.goods_purNumber.ReadOnly = true;
-            // 
-            // goods_SubmitDate
-            // 
-            this.goods_SubmitDate.DataPropertyName = "goods_SubmitDate";
-            this.goods_SubmitDate.HeaderText = "提交日期";
-            this.goods_SubmitDate.Name = "goods_SubmitDate";
-            this.goods_SubmitDate.ReadOnly = true;
-            // 
-            // goods_ShowDate
-            // 
-            this.goods_ShowDate.DataPropertyName = "goods_ShowDate";
-            this.goods_ShowDate.HeaderText = "上架日期";
-            this.goods_ShowDate.Name = "goods_ShowDate";
-            this.goods_ShowDate.ReadOnly = true;
-            // 
-            // order_inventoryID
-            // 
-            this.order_inventoryID.DataPropertyName = "order_inventoryID";
-            this.order_inventoryID.HeaderText = "下单库员";
-            this.order_inventoryID.Name = "order_inventoryID";
-            this.order_inventoryID.ReadOnly = true;
-            // 
-            // PutIn_inventoryID
-            // 
-            this.PutIn_inventoryID.DataPropertyName = "PutIn_inventoryID";
-            this.PutIn_inventoryID.HeaderText = "上架库员";
-            this.PutIn_inventoryID.Name = "PutIn_inventoryID";
-            this.PutIn_inventoryID.ReadOnly = true;
-            // 
-            // goods_note
-            // 
-            this.goods_note.DataPropertyName = "goods_note";
-            this.goods_note.HeaderText = "备注";
-            this.goods_note.Name = "goods_note";
-            this.goods_note.ReadOnly = true;
             // 
             // bt_putOut
             // 
@@ -350,6 +260,106 @@
             this.label8.TabIndex = 36;
             this.label8.Text = "保质期：";
             // 
+            // ColCheck
+            // 
+            dataGridViewCellStyle1.NullValue = "选择";
+            this.ColCheck.DefaultCellStyle = dataGridViewCellStyle1;
+            this.ColCheck.HeaderText = "选择";
+            this.ColCheck.Name = "ColCheck";
+            this.ColCheck.Width = 50;
+            // 
+            // order_count
+            // 
+            this.order_count.DataPropertyName = "order_count";
+            this.order_count.HeaderText = "订单序号";
+            this.order_count.Name = "order_count";
+            this.order_count.ReadOnly = true;
+            this.order_count.Width = 50;
+            // 
+            // goods_id
+            // 
+            this.goods_id.DataPropertyName = "goods_id";
+            this.goods_id.HeaderText = "商品编号";
+            this.goods_id.Name = "goods_id";
+            this.goods_id.ReadOnly = true;
+            // 
+            // goods_name
+            // 
+            this.goods_name.DataPropertyName = "goods_name";
+            this.goods_name.HeaderText = "商品名称";
+            this.goods_name.Name = "goods_name";
+            this.goods_name.ReadOnly = true;
+            // 
+            // goods_type
+            // 
+            this.goods_type.DataPropertyName = "goods_type";
+            this.goods_type.HeaderText = "商品种类";
+            this.goods_type.Name = "goods_type";
+            this.goods_type.ReadOnly = true;
+            // 
+            // goods_units
+            // 
+            this.goods_units.DataPropertyName = "goods_units";
+            this.goods_units.HeaderText = "商品单位";
+            this.goods_units.Name = "goods_units";
+            this.goods_units.ReadOnly = true;
+            // 
+            // goods_purchasingCost
+            // 
+            this.goods_purchasingCost.DataPropertyName = "goods_purchasingCost";
+            this.goods_purchasingCost.HeaderText = "进货价";
+            this.goods_purchasingCost.Name = "goods_purchasingCost";
+            this.goods_purchasingCost.ReadOnly = true;
+            // 
+            // goods_supplier
+            // 
+            this.goods_supplier.DataPropertyName = "goods_supplier";
+            this.goods_supplier.HeaderText = "供应商";
+            this.goods_supplier.Name = "goods_supplier";
+            this.goods_supplier.ReadOnly = true;
+            // 
+            // goods_purNumber
+            // 
+            this.goods_purNumber.DataPropertyName = "goods_purNumber";
+            this.goods_purNumber.HeaderText = "订购数量";
+            this.goods_purNumber.Name = "goods_purNumber";
+            this.goods_purNumber.ReadOnly = true;
+            // 
+            // goods_SubmitDate
+            // 
+            this.goods_SubmitDate.DataPropertyName = "goods_SubmitDate";
+            this.goods_SubmitDate.HeaderText = "提交日期";
+            this.goods_SubmitDate.Name = "goods_SubmitDate";
+            this.goods_SubmitDate.ReadOnly = true;
+            // 
+            // goods_ShowDate
+            // 
+            this.goods_ShowDate.DataPropertyName = "goods_ShowDate";
+            this.goods_ShowDate.HeaderText = "上架日期";
+            this.goods_ShowDate.Name = "goods_ShowDate";
+            this.goods_ShowDate.ReadOnly = true;
+            // 
+            // order_inventoryID
+            // 
+            this.order_inventoryID.DataPropertyName = "order_inventoryID";
+            this.order_inventoryID.HeaderText = "下单库员";
+            this.order_inventoryID.Name = "order_inventoryID";
+            this.order_inventoryID.ReadOnly = true;
+            // 
+            // PutIn_inventoryID
+            // 
+            this.PutIn_inventoryID.DataPropertyName = "PutIn_inventoryID";
+            this.PutIn_inventoryID.HeaderText = "上架库员";
+            this.PutIn_inventoryID.Name = "PutIn_inventoryID";
+            this.PutIn_inventoryID.ReadOnly = true;
+            // 
+            // goods_note
+            // 
+            this.goods_note.DataPropertyName = "goods_note";
+            this.goods_note.HeaderText = "备注";
+            this.goods_note.Name = "goods_note";
+            this.goods_note.ReadOnly = true;
+            // 
             // WH_PurchasingOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -402,7 +412,14 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox tbGoods_ShowDate;
         private System.Windows.Forms.TextBox tbNote;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbgoods_retailPrice;
+        private System.Windows.Forms.TextBox tbgoods_productionDate;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox tbgoods_expirationDate;
+        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataGridViewLinkColumn ColCheck;
+        private System.Windows.Forms.DataGridViewTextBoxColumn order_count;
         private System.Windows.Forms.DataGridViewTextBoxColumn goods_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn goods_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn goods_type;
@@ -415,11 +432,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn order_inventoryID;
         private System.Windows.Forms.DataGridViewTextBoxColumn PutIn_inventoryID;
         private System.Windows.Forms.DataGridViewTextBoxColumn goods_note;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tbgoods_retailPrice;
-        private System.Windows.Forms.TextBox tbgoods_productionDate;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox tbgoods_expirationDate;
-        private System.Windows.Forms.Label label8;
     }
 }

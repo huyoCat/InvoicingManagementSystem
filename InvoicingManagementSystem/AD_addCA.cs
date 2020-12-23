@@ -60,6 +60,7 @@ namespace InvoicingManagementSystem
                     if (count < 1)
                     {
                         MessageBox.Show("添加失败！");
+                        return;
                     }
                     else
                     {
@@ -72,6 +73,7 @@ namespace InvoicingManagementSystem
                 else
                 {
                     MessageBox.Show("该账号已存在！");
+                    return;
                 }
 
             }

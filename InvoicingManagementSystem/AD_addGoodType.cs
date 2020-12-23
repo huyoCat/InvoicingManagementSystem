@@ -158,7 +158,7 @@ namespace InvoicingManagementSystem
         /// <param name="e"></param>
         private void btDelete_Click(object sender, EventArgs e)
         {
-            //获取所选数据
+            //获取所选数据 泛型
             List<int> listId = new List<int>();
             for (int i = 0; i < dataGridView_GoodsTypeList.Rows.Count; i++)
             {

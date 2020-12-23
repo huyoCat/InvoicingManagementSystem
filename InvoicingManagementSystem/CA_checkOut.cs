@@ -347,7 +347,6 @@ namespace InvoicingManagementSystem
                         command.Transaction = transaction;
                         try
                         {
-                            //LoginForm iden = new LoginForm();
                             String goods_name = "";
                             String goods_type = "";
                             int goods_number = 1;//购买数量默认为1
@@ -365,18 +364,13 @@ namespace InvoicingManagementSystem
                                 SqlParameter paraID = new SqlParameter("@goods_id", goods_id);
                                 SqlDataReader dataReader = SqlHelper.ExecuteReader(sqlGetDate, paraID);
                                 //读取数据
-                                //DataRow dataRow = (dataGridView_SalesList.Rows[flag].DataBoundItem as DataRowView).Row;
                                 DataGridViewCell dataGridViewCell = dataGridView_SalesList.Rows[flag].Cells["goods_number"];
                                 if (flag < dataGridView_SalesList.Rows.Count)
                                 {
                                     flag++;
                                 }
                                 int.TryParse(dataGridViewCell.EditedFormattedValue.ToString(), out goods_number);
-                                //if(!("".Equals(dataGridViewCell.Value.ToString()))&& dataGridViewCell.Value.ToString() != null)
-                                //{
-                                //goods_number = (int)dataGridViewCell.Value.ToString();
-                                //}
-
+                                
                                 if (dataReader.Read())//没有这一步会说DataReader没有启动
                                 {
                                     goods_name = dataReader["goods_name"].ToString();
@@ -385,7 +379,6 @@ namespace InvoicingManagementSystem
                                     goods_retailPrice = dataReader["goods_retailPrice"].ToString();
                                     goods_soldDate = DateTime.Now.ToString("yyyy.MM.dd");
                                     goods_inventory= (int)dataReader["goods_inventory"];
-                                    //int.TryParse(this.Tag.ToString(), out goods_inventory);
                                 }
                                 dataReader.Close();
 

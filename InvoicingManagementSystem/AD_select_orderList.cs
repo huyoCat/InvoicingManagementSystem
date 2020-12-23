@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace InvoicingManagementSystem
@@ -52,7 +46,7 @@ namespace InvoicingManagementSystem
             int SearchSID = (int)comboBoxKeyword.SelectedValue;
             string keyWord = textBox_search.Text.Trim();
 
-            string sql = "select * from GoodsList where 1=1 ";
+            string sql = "select * from orderList where 1=1 ";
             //sql += " where 1=1";
             if (SearchSID > 0)
             {

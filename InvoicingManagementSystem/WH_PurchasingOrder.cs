@@ -18,7 +18,7 @@ namespace InvoicingManagementSystem
             int SearchSID = (int)comboBoxKeyword.SelectedValue;
             string keyWord = textBox_search.Text.Trim();
 
-            string sql = "select goods_id,goods_name,goods_type,goods_units," +
+            string sql = "select order_count,goods_id,goods_name,goods_type,goods_units," +
                 "goods_purchasingCost,goods_supplier,goods_purNumber,goods_SubmitDate,goods_ShowDate," +
                 "order_inventoryID,PutIn_inventoryID from orderList where IsDeleted=0 ";
             //sql += " where 1=1";
@@ -75,7 +75,7 @@ namespace InvoicingManagementSystem
         public void SqlDataRefresh()
         {
             //刷新商品列表
-            string sql1 = "select goods_id,goods_name,goods_type,goods_units," +
+            string sql1 = "select order_count,goods_id,goods_name,goods_type,goods_units," +
                 "goods_purchasingCost,goods_supplier,goods_purNumber,goods_SubmitDate,goods_ShowDate," +
                 "order_inventoryID,PutIn_inventoryID from orderList where IsDeleted=0";
             DataTable dataTableGoodsList = SqlHelper.GetDataTable(sql1);
@@ -96,13 +96,14 @@ namespace InvoicingManagementSystem
         /// <param name="e"></param>
         private void bt_putOut_Click(object sender, EventArgs e)
         {
+            //获取订单count
+            int order_count = int.Parse(dataGridView_OrderList.Rows[flag].Cells["order_count"].Value.ToString());
 
-            string goods_id = dataGridView_OrderList.Rows[flag].Cells[2].Value.ToString();
             //在orderList修改数据
-            string sql1 = "update orderList set IsDeleted=1 where goods_id=@goods_id";
+            string sql1 = "update orderList set IsDeleted=1 where order_count=@order_count";
             SqlParameter[] parameters2 =
              {
-                             new SqlParameter("@goods_id",goods_id)
+                             new SqlParameter("@order_count",order_count)
                          };
             int count1 = SqlHelper.ExecuteNonQuery(sql1, parameters2);
             if (count1 < 1)
@@ -112,17 +113,18 @@ namespace InvoicingManagementSystem
             }
 
             //获取数据,添加至Goods_List
-            goods_id = lbGoods_id.Text;//新的编号,到时候可以加一个存不存在的判断
+            string goods_id = lbGoods_id.Text;//新的编号,到时候可以加一个存不存在的判断
             string goods_name = lb_goods_name.Text;
-            string goods_type = dataGridView_OrderList.Rows[flag].Cells[4].Value.ToString();
-            string goods_units = dataGridView_OrderList.Rows[flag].Cells[5].Value.ToString();
+            string goods_type = dataGridView_OrderList.Rows[flag].Cells["goods_type"].Value.ToString();
+            string goods_units = dataGridView_OrderList.Rows[flag].Cells["goods_units"].Value.ToString();
             double goods_retailPrice;
             double.TryParse(tbgoods_retailPrice.Text, out goods_retailPrice);
-            string goods_purchasingCost = dataGridView_OrderList.Rows[flag].Cells[6].Value.ToString();
+            double goods_purchasingCost = double.Parse(dataGridView_OrderList.Rows[flag].Cells["goods_purchasingCost"].Value.ToString());
+            //double.TryParse(tbgoods_retailPrice.Text, out goods_retailPrice);
             string goods_productionDate = tbgoods_productionDate.Text;//这里要判断是不是日期格式
             string goods_expirationDate = tbgoods_expirationDate.Text;//这里要判断是不是日期格式
-            string goods_supplier = dataGridView_OrderList.Rows[flag].Cells[7].Value.ToString();
-            string goods_inventory = dataGridView_OrderList.Rows[flag].Cells[8].Value.ToString();
+            string goods_supplier = dataGridView_OrderList.Rows[flag].Cells["goods_supplier"].Value.ToString();
+            string goods_inventory = dataGridView_OrderList.Rows[flag].Cells["goods_purNumber"].Value.ToString();
             string goods_note = tbNote.Text;
             if ("".Equals(tbNote.Text) || tbNote.Text == null)
             {
@@ -240,11 +242,12 @@ namespace InvoicingManagementSystem
                 if (dataGridViewCell is DataGridViewLinkCell &&
                     dataGridViewCell.FormattedValue.ToString() == "选择")
                 {
-                    string goods_id = dataGridView_OrderList.Rows[flag].Cells[2].Value.ToString();
-                    string sql = "update orderList set IsSelect=1 where goods_id=@goods_id";
+                    int order_count = int.Parse(dataGridView_OrderList.Rows[flag].Cells["order_count"].Value.ToString());
+                    string sql = "update orderList set IsSelect=0 " +
+                        "update orderList set IsSelect=1 where order_count=@order_count";
                     SqlParameter[] parameters2 =
                          {
-                             new SqlParameter("@goods_id",goods_id)
+                             new SqlParameter("@order_count",order_count)
                          };
                     int count1 = SqlHelper.ExecuteNonQuery(sql, parameters2);
                     if (count1 < 1)
@@ -252,7 +255,7 @@ namespace InvoicingManagementSystem
                         MessageBox.Show("select状态修改失败！");
                         return;
                     }
-                    lb_goods_name.Text = dataGridView_OrderList.Rows[flag].Cells[3].Value.ToString();
+                    lb_goods_name.Text = dataGridView_OrderList.Rows[flag].Cells["goods_name"].Value.ToString();
                     tbGoods_ShowDate.Text = DateTime.Now.ToString("yyyy.MM.dd");
                 }
             }
@@ -261,11 +264,11 @@ namespace InvoicingManagementSystem
 
         private void bt_delete_Click(object sender, EventArgs e)
         {
-            string goods_id = dataGridView_OrderList.Rows[flag].Cells[2].Value.ToString();
-            string sql = "update orderList set IsDeleted=1 where goods_id=@goods_id";
+            int order_count = int.Parse(dataGridView_OrderList.Rows[flag].Cells["order_count"].Value.ToString());
+            string sql = "update orderList set IsDeleted=1 where order_count=@order_count";
             SqlParameter[] parameters2 =
                  {
-                             new SqlParameter("@goods_id",goods_id)
+                             new SqlParameter("@order_count",order_count)
                          };
             int count1 = SqlHelper.ExecuteNonQuery(sql, parameters2);
             if (count1 < 1)
